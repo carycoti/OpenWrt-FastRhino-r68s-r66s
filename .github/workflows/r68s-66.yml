@@ -24,7 +24,7 @@ on:
   #   - cron: 0 17 4,14,24 * *
 
 env:
-  REPO_URL: https://github.com/immortalwrt/immortalwrt
+  REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: r68s/6.6/config/r68s.config
