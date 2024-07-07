@@ -137,6 +137,8 @@ jobs:
         cd openwrt
         echo " 系统空间      类型   总数  已用  可用 使用率"
         df -hT $PWD
+        cat /etc/os-release
+        uname -a
         
         echo
         echo "=========================================="
