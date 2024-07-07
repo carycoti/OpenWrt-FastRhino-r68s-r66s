@@ -29,7 +29,7 @@ git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 rm -rf feeds/luci/themes/luci-theme-argon
 
 # Themes
-git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/lean/luci-theme-argon
+git clone https://github.com/jerrykuku/luci-theme-argon.git package/lean/luci-theme-argon
 
 # 添加额外软件包
 
