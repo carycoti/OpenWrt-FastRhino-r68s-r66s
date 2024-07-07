@@ -27,7 +27,7 @@ git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
 # 移除重复软件包
 #rm -rf feeds/luci/themes/luci-theme-argon
-rm -rf feeds/luci/themes/luci-theme-bootstrap-mmdvm
+#rm -rf feeds/luci/themes/luci-theme-bootstrap-mmdvm
 
 # Themes
 #git clone https://github.com/jerrykuku/luci-theme-argon.git package/lean/luci-theme-argon
