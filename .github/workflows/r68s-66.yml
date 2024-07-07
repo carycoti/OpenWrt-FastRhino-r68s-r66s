@@ -144,9 +144,9 @@ jobs:
         echo "=========================================="
         echo
 
-        echo "DISTRIB_REVISION=$(cat /etc/openwrt_release|grep DISTRIB_REVISION= | sed "s/DISTRIB_RELEASE='\(.*\)'/\1/g")" >> $GITHUB_ENV
+        echo "DISTRIB_REVISION=$(cat package/base-files/files/etc/openwrt_release|grep DISTRIB_REVISION= | sed "s/DISTRIB_RELEASE='\(.*\)'/\1/g")" >> $GITHUB_ENV
         echo "KERNEL_PATCHVER=$(cat include/kernel-6.6|grep LINUX_KERNEL_HASH | sed "s/.*\(6\.6\.\?[0-9]*\).*/\1/g")" >> $GITHUB_ENV
-        echo "	    当前编译版本：$(cat /etc/openwrt_release|grep DISTRIB_REVISION= | sed "s/DISTRIB_RELEASE='\(.*\)'/\1/g")"
+        echo "	    当前编译版本：$(cat package/base-files/files/etc/openwrt_release|grep DISTRIB_REVISION= | sed "s/DISTRIB_RELEASE='\(.*\)'/\1/g")"
         echo "	    内核版本：$(cat include/kernel-6.6|grep LINUX_KERNEL_HASH | sed "s/.*\(6\.6\.\?[0-9]*\).*/\1/g")"
 
         echo
