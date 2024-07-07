@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: 编译OpenWrt固件r68s-6.6
+name: 编译immortalwrt OpenWrt固件r68s-6.6
 
 on:
   repository_dispatch:
