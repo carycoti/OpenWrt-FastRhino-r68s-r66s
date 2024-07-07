@@ -238,7 +238,7 @@ jobs:
         
         ⏰ 编译时间：${{ env.FILE_TIME1 }}
         
-        🎈 内核版本：${{ env.KERNEL_PATCHVER }}
+        🎈 内核版本：$(cat include/kernel-6.6|grep LINUX_KERNEL_HASH | sed "s/.*\(6\.6\.\?[0-9]*\).*/\1/g")
         
         # 🎉 编译版本：${{ env.DISTRIB_REVISION }}
         
