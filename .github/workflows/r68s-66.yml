@@ -24,7 +24,7 @@ on:
   #   - cron: 0 17 4,14,24 * *
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: r68s/6.6/config/r68s.config
@@ -137,16 +137,16 @@ jobs:
         cd openwrt
         echo " 系统空间      类型   总数  已用  可用 使用率"
         df -hT $PWD
+        cat /etc/openwrt_release
 
         
         echo
         echo "=========================================="
         echo
 
-        ZZZ="package/lean/default-settings/files/zzz-default-settings"
-        echo "DISTRIB_REVISION=$(cat $ZZZ|grep DISTRIB_REVISION= | sed 's/^.\{24\}//g' | sed 's/.\{26\}$//')" >> $GITHUB_ENV
+        echo "DISTRIB_REVISION=$(cat /etc/openwrt_release|grep DISTRIB_REVISION= | sed "s/DISTRIB_RELEASE='\(.*\)'/\1/g")" >> $GITHUB_ENV
         echo "KERNEL_PATCHVER=$(cat include/kernel-6.6|grep LINUX_KERNEL_HASH | sed "s/.*\(6\.6\.\?[0-9]*\).*/\1/g")" >> $GITHUB_ENV
-        echo "	    当前编译版本：$(cat $ZZZ|grep DISTRIB_REVISION= | sed 's/^.\{24\}//g' | sed 's/.\{26\}$//')"
+        echo "	    当前编译版本：$(cat /etc/openwrt_release|grep DISTRIB_REVISION= | sed "s/DISTRIB_RELEASE='\(.*\)'/\1/g")"
         echo "	    内核版本：$(cat include/kernel-6.6|grep LINUX_KERNEL_HASH | sed "s/.*\(6\.6\.\?[0-9]*\).*/\1/g")"
 
         echo
@@ -233,7 +233,7 @@ jobs:
         echo "release_date=$(date +"%Y.%m.%d")" >> $GITHUB_OUTPUT
         touch release.txt
         echo "
-        ★ 源码 : https://github.com/coolsnowwolf/lede
+        ★ 源码 : https://github.com/immortalwrt/immortalwrt
         ★ 分支 : master
         ★ 感谢源码作者无私分享！
         
@@ -243,7 +243,7 @@ jobs:
         
         🎉 编译版本：${{ env.DISTRIB_REVISION }}
         
-        🖥 管理地址：192.168.1.233 
+        🖥 管理地址：192.168.1.21 
         
         🌴 名称：root
         
