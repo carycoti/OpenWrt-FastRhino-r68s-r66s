@@ -1,5 +1,5 @@
-src-git kenzo https://github.com/kenzok8/openwrt-packages
-src-git small https://github.com/kenzok8/small
+#src-git kenzo https://github.com/kenzok8/openwrt-packages
+#src-git small https://github.com/kenzok8/small
 #src-git smpackage https://github.com/kenzok8/small-package
 #src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages
 #src-git passwall https://github.com/xiaorouji/openwrt-passwall
