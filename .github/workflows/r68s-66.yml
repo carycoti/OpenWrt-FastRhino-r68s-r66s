@@ -24,8 +24,8 @@ on:
   #   - cron: 0 17 4,14,24 * *
 
 env:
-  REPO_URL: https://github.com/immortalwrt/immortalwrt
-  REPO_BRANCH: master
+  REPO_URL: https://github.com/openwrt/openwrt
+  REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: r68s/6.6/config/r68s.config
   DIY_P1_SH: r68s/6.6/diy-part1.sh
