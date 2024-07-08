@@ -121,6 +121,7 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        cat openwrt/.config
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
@@ -131,52 +132,7 @@ jobs:
       env:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-        
-    # - name: 输出编译信息
-    #   run: |
-    #     cd openwrt
-    #     echo " 系统空间      类型   总数  已用  可用 使用率"
-    #     df -hT $PWD
-
-        
-    #     echo
-    #     echo "=========================================="
-    #     echo
-
-    #     # echo "DISTRIB_REVISION=$(cat package/base-files/files/etc/openwrt_release|grep DISTRIB_REVISION= | sed "s/DISTRIB_RELEASE='\(.*\)'/\1/g")" >> $GITHUB_ENV
-    #     echo "KERNEL_PATCHVER=$(cat include/kernel-6.6|grep LINUX_KERNEL_HASH | sed "s/.*\(6\.6\.\?[0-9]*\).*/\1/g")" >> $GITHUB_ENV
-    #     # echo "	    当前编译版本：$(cat package/base-files/files/etc/openwrt_release|grep DISTRIB_REVISION= | sed "s/DISTRIB_RELEASE='\(.*\)'/\1/g")"
-    #     echo "	    内核版本：$(cat include/kernel-6.6|grep LINUX_KERNEL_HASH | sed "s/.*\(6\.6\.\?[0-9]*\).*/\1/g")"
-
-    #     echo
-    #     echo "=========================================="
-
-    #     grep -i CONFIG_PACKAGE_luci-app .config | grep  -v \# > Plug-in
-    #     grep -i CONFIG_PACKAGE_luci-theme .config | grep  -v \# >> Plug-in
-    #     sed -i '/INCLUDE/d' Plug-in > /dev/null 2>&1
-    #     sed -i 's/CONFIG_PACKAGE_/、/g' Plug-in
-    #     sed -i '/Transparent_Proxy/d' Plug-in > /dev/null 2>&1 #排除 luci-app-passwall_Transparent_Proxy
-    #     sed -i '/qbittorrent-simple_dynamic/d' Plug-in > /dev/null 2>&1 #排除 luci-app-qbittorrent-simple_dynamic
-    #     sed -i 's/=y/\ /g' Plug-in
-    #     awk '$0=NR$0' Plug-in > Plug-2
-    #     awk '{print "	" $0}' Plug-2 > Plug-in
-
-    #     echo
-    #     echo
-    #     echo "	      已选插件列表"
-    #     cat Plug-in
-    #     rm -rf {Plug-in,Plug-2}
-
-    #     echo
-    #     echo "=========================================="
-
-    #     echo
-    #     echo
-    #     echo "输出完整插件信息..."
-    #     echo
-    #     echo
-    #     cat .config
-
+ 
     - name: 下载固件包
       id: package
       run: |
@@ -185,11 +141,7 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-    
-    - name: 下载固件包
-      id: package2
-      run: |
-        cd openwrt
+        
         make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
