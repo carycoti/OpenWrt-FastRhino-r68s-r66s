@@ -112,10 +112,10 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: 更新源 #Update feeds
-      run: cd openwrt && rm -rf tmp build_dir && ./scripts/feeds update -a -i
+      run: cd openwrt && rm -rf tmp build_dir && rm -rf ./feeds && ./scripts/feeds update -a -i
 
     - name: 安装源 #Install feeds
-      run: cd openwrt && ./scripts/feeds install -a -f
+      run: cd openwrt && ./scripts/feeds install -a -f && ./scripts/feeds install -a -f
 
     - name: patch2补丁和自定义设置
       run: |
