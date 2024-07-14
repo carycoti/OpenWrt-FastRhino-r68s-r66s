@@ -15,11 +15,14 @@
 
 # 增减包: luci-app-smartdns换为需要操作的包名，增=y， 减=n
 sed -i "s/\(luci-app-smartdns\)=y/\1=n/" .config
+sed -i "s/\(luci-app-bypass\)=y/\1=n/" .config
+sed -i "s/\(luci-app-passwall\)=y/\1=n/" .config
+sed -i "s/\(luci-app-ssr-plus\)=y/\1=n/" .config
 
 # 添加软件源
 shopt -s extglob
 # 添加软件源
-# sed -i '$a src-git kiddin9 https://github.com/kiddin9/openwrt-packages.git;master' feeds.conf.default
+sed -i '$a src-git kiddin9 https://github.com/kiddin9/openwrt-packages.git;master' feeds.conf.default
 
 sed -i "/telephony/d" feeds.conf.default
 
@@ -28,7 +31,7 @@ sed -i "s?targets/%S/packages?targets/%S/\$(LINUX_VERSION)?" include/feeds.mk
 sed -i '/	refresh_config();/d' scripts/feeds
 
 ./scripts/feeds update -a
-# ./scripts/feeds install -a -p kiddin9 -f
+./scripts/feeds install -a -p kiddin9 -f
 ./scripts/feeds install -a
 
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
