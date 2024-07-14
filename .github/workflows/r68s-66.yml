@@ -169,7 +169,7 @@ jobs:
         du -h --max-depth=1 openwrt/build_dir
         du -h --max-depth=1 openwrt/bin
         cd openwrt
-        tree
+        tree -df
 
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
