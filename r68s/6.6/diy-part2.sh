@@ -39,7 +39,7 @@ sed -i "s/\(luci-app-passwall\)=y/\1=n/" .config
 sed -i "s/\(luci-app-ssr-plus\)=y/\1=n/" .config
 
 # 添加额外软件包
-# sed -i "CONFIG_PACKAGE_luci-app-smartdns=y" .config
+sed -i "CONFIG_PACKAGE_luci-app-homeproxy=y" .config
 
 # 科学上网插件
 
