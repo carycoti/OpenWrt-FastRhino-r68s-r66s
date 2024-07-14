@@ -13,12 +13,6 @@
 # 执行命令来切换内核
 #sed -i 's/PATCHVER:=6.1/PATCHVER:=6.6/g' target/linux/rockchip/Makefile
 
-# 增减包: luci-app-smartdns换为需要操作的包名，增=y， 减=n
-sed -i "s/\(luci-app-smartdns\)=y/\1=n/" .config
-sed -i "s/\(luci-app-bypass\)=y/\1=n/" .config
-sed -i "s/\(luci-app-passwall\)=y/\1=n/" .config
-sed -i "s/\(luci-app-ssr-plus\)=y/\1=n/" .config
-
 # 添加软件源
 shopt -s extglob
 # 添加软件源
