@@ -33,13 +33,13 @@ rm -rf feeds/luci/themes/luci-theme-bootstrap-mmdvm
 git clone https://github.com/jerrykuku/luci-theme-argon.git package/lean/luci-theme-argon
 
 # 增减常用软件包: luci-app-smartdns换为需要操作的包名，增=y， 减=n
-# sed -i "s/\(luci-app-smartdns\)=y/\1=n/" .config
-sed -i 's/\(luci-app-bypass\)=y/\1=n/' .config
-sed -i 's/\(luci-app-passwall\)=y/\1=n/' .config
-sed -i 's/\(luci-app-ssr-plus\)=y/\1=n/' .config
+sed -i "s/\(luci-app-smartdns\)=y/\1=n/" .config
+# sed -i 's/\(luci-app-bypass\)=y/\1=n/' .config
+# sed -i 's/\(luci-app-passwall\)=y/\1=n/' .config
+# sed -i 's/\(luci-app-ssr-plus\)=y/\1=n/' .config
 
 # 添加额外软件包
-sed -i '$a CONFIG_PACKAGE_luci-app-homeproxy=y' .config
+# sed -i '$a CONFIG_PACKAGE_luci-app-homeproxy=y' .config
 
 
 # 科学上网插件
