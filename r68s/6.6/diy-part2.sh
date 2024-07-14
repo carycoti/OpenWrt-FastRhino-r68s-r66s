@@ -19,21 +19,21 @@ sed -i 's/192.168.1.1/192.168.1.21/g' package/base-files/files/bin/config_genera
 #uci set network.wan.password='yourpassword'
 
 # 修改软件包
-chmod -R 755 files
-rm -rf feeds/luci/applications/luci-app-mosdns && rm -rf feeds/packages/net/{alist,adguardhome,smartdns}
-rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
-rm -rf feeds/packages/lang/golang
-git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
+#chmod -R 755 files
+#rm -rf feeds/luci/applications/luci-app-mosdns && rm -rf feeds/packages/net/{alist,adguardhome,smartdns}
+#rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
+#rm -rf feeds/packages/lang/golang
+#git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
 # 移除重复软件包
-#rm -rf feeds/luci/themes/luci-theme-argon
+rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/luci/themes/luci-theme-bootstrap-mmdvm
 
 # Themes
 git clone https://github.com/jerrykuku/luci-theme-argon.git package/lean/luci-theme-argon
 
 # 增减常用软件包: luci-app-smartdns换为需要操作的包名，增=y， 减=n
-sed -i "s/\(luci-app-smartdns\)=y/\1=n/" .config
+#sed -i "s/\(luci-app-smartdns\)=y/\1=n/" .config
 # sed -i 's/\(luci-app-bypass\)=y/\1=n/' .config
 # sed -i 's/\(luci-app-passwall\)=y/\1=n/' .config
 # sed -i 's/\(luci-app-ssr-plus\)=y/\1=n/' .config
