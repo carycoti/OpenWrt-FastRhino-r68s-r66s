@@ -36,11 +36,11 @@ sed -i 's/luci-theme-bootstrap/luci-theme-argon/' feeds/luci/collections/luci/Ma
 
 # 添加额外软件包
 echo 'CONFIG_PACKAGE_luci-app-diskman=y' >>.config
-echo 'CONFIG_PACKAGE_luci-app-samba=y' >>.config
+echo 'CONFIG_PACKAGE_luci-app-samba4=y' >>.config
 echo 'CONFIG_PACKAGE_docker-compose=y' >>.config
-# echo 'CONFIG_PACKAGE_luci-app-linkease=y' >>.config
-# echo 'CONFIG_PACKAGE_luci-app-diskman=y' >>.config
-# echo 'CONFIG_PACKAGE_luci-app-diskman=y' >>.config
+echo 'CONFIG_PACKAGE_luci-app-dockerman=y' >>.config
+echo 'CONFIG_PACKAGE_luci-app-istorex=y' >>.config
+echo 'CONFIG_PACKAGE_luci-app-linkease=y' >>.config
 
 
 # 科学上网插件
