@@ -19,7 +19,7 @@ sed -i 's/192.168.1.1/192.168.1.233/g' package/base-files/files/bin/config_gener
 #uci set network.wan.password='yourpassword'
 
 # 修改软件包
-chmod -R 755 files
+#chmod -R 755 files
 #rm -rf feeds/luci/applications/luci-app-mosdns && rm -rf feeds/packages/net/{alist,adguardhome,smartdns}
 #rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
 #rm -rf feeds/packages/lang/golang
