@@ -216,7 +216,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        name: Lean_OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
     - name: 生成发布标签
@@ -254,7 +254,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GIT_USER_TOKEN }}
       with:
-        name: ${{ steps.tag.outputs.release_date }} ${{ env.DISTRIB_REVISION }}-FastRhino-R68S-linux-6.6-固件下载
+        name: ${{ steps.tag.outputs.release_tag }}-${{ env.DISTRIB_REVISION }}-FastRhino-R68S-linux-6.6-固件下载
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*.img.gz
