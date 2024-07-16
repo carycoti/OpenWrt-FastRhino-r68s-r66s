@@ -237,13 +237,13 @@ jobs:
         
         🎉 编译版本：${{ env.DISTRIB_REVISION }}
         
-        🖥 管理地址：192.168.1.21
+        🖥  管理地址：192.168.1.21
         
         🌴 名称：root
         
-        🛠 密码：password
+        🛠  密码：password
 
-        已选插件列表:
+        🎏 已选插件列表:
 
         ${{ env.PLUG_IN }}" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
