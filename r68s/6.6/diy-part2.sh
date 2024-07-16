@@ -11,7 +11,8 @@
 # ===============================================================
 
 #修改默认IP
-sed -i 's/192.168.1.1/192.168.1.21/g' package/base-files/files/bin/config_generate   # 定制默认IP
+sed -i "s/192.168.1.1/192.168.1.21/g" package/feeds/kiddin9/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.1.21/g' package/base-files/files/bin/config_generate
 
 # Configure pppoe connection
 #uci set network.wan.proto=pppoe
