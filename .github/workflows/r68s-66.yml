@@ -152,13 +152,6 @@ jobs:
       run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
-
-        rm -rf ./staging_dir/hostpkg/lib/ruby
-        rm -rf ./staging_dir/hostpkg/include/ruby-*
-        # rm staging_dir/hostpkg/lib/pkgconfig/ruby-*
-        # rm staging_dir/hostpkg/bin/ruby
-        make package/ruby/{clean,compile} V=s -j8
-
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
         grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
