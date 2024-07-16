@@ -29,6 +29,11 @@ sed -i '/	refresh_config();/d' scripts/feeds
 ./scripts/feeds update -a
 # ./scripts/feeds install -a -p kiddin9 -f
 
+# Themes
+rm -rf feeds/luci/themes/luci-theme-argon
+#rm -rf feeds/luci/themes/luci-theme-bootstrap-mmdvm
+git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+
 # rm -rf feeds/luci/applications/luci-app-mosdns
 # rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,v2ray*,sing*,smartdns}
 # rm -rf feeds/packages/utils/v2dat
