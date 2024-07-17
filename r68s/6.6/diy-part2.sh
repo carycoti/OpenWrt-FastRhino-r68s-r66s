@@ -13,7 +13,10 @@
 #修改默认IP
 sed -i 's/192.168.1.1/192.168.1.21/g' package/base-files/files/bin/config_generate   # 定制默认IP
 # 默认网关
-uci set network.lan.gateway='192.168.1.1'
+# uci set network.lan.gateway='192.168.1.1'
+# uci set network.lan.dns='192.168.1.1'
+sed -i 's/^\(\([ \t]*\)set network.$1.netmask=.*\)/\1\n \2set network.$1.dns='192.168.1.1'/' package/base-files/files/bin/config_generate
+sed -i 's/^\(\([ \t]*\)set network.$1.netmask=.*\)/\1\n \2set network.$1.gateway='192.168.1.1'/' package/base-files/files/bin/config_generate
 
 # Configure pppoe connection
 #uci set network.wan.proto=pppoe
