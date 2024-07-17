@@ -52,6 +52,9 @@ rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftabl
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
+# 2024-07-17临时更改chinadns-ng
+sed -i "s/PKG_HASH:=d907398d08a2cadd8ab5b3c6c353de572bddb87db1363a458703dd7e966ddb13/PKG_HASH:=f0c173d2241317004ac33cf116ff15f449a8dede67f7e38e6f21efa722d70219/" feeds/small/chinadns-ng
+
 ./scripts/feeds install -a
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git kenzo https://github.com/kenzok8/openwrt-packages' >>feeds.conf.default
