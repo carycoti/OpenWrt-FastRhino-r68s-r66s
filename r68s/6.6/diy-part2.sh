@@ -12,6 +12,8 @@
 
 #修改默认IP
 sed -i 's/192.168.1.1/192.168.1.21/g' package/base-files/files/bin/config_generate   # 定制默认IP
+# 默认网关
+uci set network.lan.gateway='192.168.1.1'
 
 # Configure pppoe connection
 #uci set network.wan.proto=pppoe
@@ -25,8 +27,12 @@ sed -i 's/192.168.1.1/192.168.1.21/g' package/base-files/files/bin/config_genera
 #rm -rf feeds/packages/lang/golang
 #git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
-# 移除重复软件包
-
+# 停用冲突的软件包: luci-app-smartdns换为需要操作的包名，启用=y， 停用=n
+#sed -i "s/\(luci-app-smartdns\)=y/\1=n/" .config
+# sed -i 's/\(luci-app-bypass\)=y/\1=n/' .config
+sed -i 's/\(luci-app-passwall\)=y/\1=n/' .config
+# sed -i 's/\(luci-app-ssr-plus\)=y/\1=n/' .config
+sed -i 's/\(chinadns-ng\)=y/\1=n/' .config
 
 # 添加额外软件包
 echo 'CONFIG_PACKAGE_luci-app-diskman=y' >>.config
