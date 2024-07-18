@@ -53,8 +53,8 @@ rm -rf feeds/packages/lang/golang
 git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
 # 2024-07-17临时更改chinadns-ng
-sed -i "s/PKG_HASH:=d907398d08a2cadd8ab5b3c6c353de572bddb87db1363a458703dd7e966ddb13/PKG_HASH:=f0c173d2241317004ac33cf116ff15f449a8dede67f7e38e6f21efa722d70219/" feeds/small/chinadns-ng
-sed -i "s/PKG_HASH:=e70dd8843c3688b58f66fff5320a93d5789b79114bcb36a94d5b554664439f04/PKG_HASH:=b99ef18516b705b3e73b15a9d5ddc99add359299b52639fe3c81dd761591d9d9/" feeds/kenzo/lua-maxminddb
+sed -i "s/PKG_HASH:=d907398d08a2cadd8ab5b3c6c353de572bddb87db1363a458703dd7e966ddb13/PKG_HASH:=f0c173d2241317004ac33cf116ff15f449a8dede67f7e38e6f21efa722d70219/" feeds/small/chinadns-ng/Makefile
+#sed -i "s/PKG_HASH:=e70dd8843c3688b58f66fff5320a93d5789b79114bcb36a94d5b554664439f04/PKG_HASH:=b99ef18516b705b3e73b15a9d5ddc99add359299b52639fe3c81dd761591d9d9/" feeds/kenzo/lua-maxminddb/Makefile
 
 ./scripts/feeds install -a
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
