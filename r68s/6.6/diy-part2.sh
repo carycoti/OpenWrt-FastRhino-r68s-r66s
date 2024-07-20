@@ -12,6 +12,10 @@
 
 #修改默认IP
 sed -i 's/192.168.1.1/192.168.1.21/g' package/base-files/files/bin/config_generate   # 定制默认IP
+# 默认网关和dns
+sed -i 's/\(\([ \t]\+\)set network.$1.netmask=.*\)/\1\n \2set network.$1.dns='192.168.1.1'/' package/base-files/files/bin/config_generate
+sed -i 's/\(\([ \t]\+\)set network.$1.netmask=.*\)/\1\n \2set network.$1.gateway='192.168.1.1'/' package/base-files/files/bin/config_generate
+
 
 # Configure pppoe connection
 #uci set network.wan.proto=pppoe
@@ -25,15 +29,13 @@ sed -i 's/192.168.1.1/192.168.1.21/g' package/base-files/files/bin/config_genera
 # rm -rf feeds/packages/lang/golang
 # git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
-# 移除重复软件包
-rm -rf feeds/luci/themes/luci-theme-argon
-rm -rf feeds/luci/themes/luci-theme-bootstrap-mmdvm
-
-# Themes
-git clone https://github.com/jerrykuku/luci-theme-argon.git package/lean/luci-theme-argon
-
 # 添加额外软件包
-
+echo 'CONFIG_PACKAGE_luci-app-diskman=y' >>.config
+echo 'CONFIG_PACKAGE_luci-app-samba4=y' >>.config
+echo 'CONFIG_PACKAGE_docker-compose=y' >>.config
+echo 'CONFIG_PACKAGE_luci-app-dockerman=y' >>.config
+echo 'CONFIG_PACKAGE_luci-app-istorex=y' >>.config
+echo 'CONFIG_PACKAGE_luci-app-linkease=y' >>.config
 
 # 科学上网插件
 

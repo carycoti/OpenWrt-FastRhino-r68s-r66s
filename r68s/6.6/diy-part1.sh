@@ -26,6 +26,9 @@ sed -i "/telephony/d" feeds.conf.default
 sed -i "s?targets/%S/packages?targets/%S/\$(LINUX_VERSION)?" include/feeds.mk
 sed -i '/	refresh_config();/d' scripts/feeds
 
+./scripts/feeds update -a
+# ./scripts/feeds install -a -p kiddin9 -f
+
 # 修改 Makefile
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang\/golang\/golang-package.mk/$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g' {}
@@ -35,8 +38,10 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 # 取消对 samba4 的菜单调整
 sed -i '/samba4/s/^/#/' package/lean/default-settings/files/zzz-default-settings
 
-./scripts/feeds update -a
-# ./scripts/feeds install -a -p kiddin9 -f
+# Themes
+rm -rf feeds/luci/themes/luci-theme-argon
+rm -rf feeds/luci/themes/luci-theme-bootstrap-mmdvm
+git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 
 # rm -rf feeds/luci/applications/luci-app-mosdns
 # rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,v2ray*,sing*,smartdns}
