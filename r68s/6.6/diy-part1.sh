@@ -51,6 +51,8 @@ git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-a
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
+curl -sfL https://github.com/coolsnowwolf/packages/raw/master/lang/ruby/Makefile -o feeds/packages/lang/ruby/Makefile
+
 ./scripts/feeds install -a
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git kenzo https://github.com/kenzok8/openwrt-packages' >>feeds.conf.default
