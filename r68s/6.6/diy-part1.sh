@@ -29,6 +29,9 @@ sed -i '/	refresh_config();/d' scripts/feeds
 
 ./scripts/feeds update -a
 
+git clone https://github.com/kenzok8/small 
+mv small/gn feeds/kiddin9/gn
+rm -rf small
 ./scripts/feeds install -a -p kiddin9 -f
 
 # 修改 Makefile
