@@ -52,7 +52,8 @@ git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/lea
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/' feeds/luci/collections/luci/Makefile
 
 # 晶晨宝盒
-git clone https://github.com/ophub/luci-app-amlogic package/luci-app-amlogic
+rm -rf package/luci-app-amlogic
+git clone https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
 sed -i "s|firmware_repo.*|firmware_repo 'https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s'|g" package/luci-app-amlogic/root/etc/config/amlogic
 
 rm -rf feeds/luci/applications/luci-app-mosdns
