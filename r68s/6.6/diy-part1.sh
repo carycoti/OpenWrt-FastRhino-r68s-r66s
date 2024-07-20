@@ -64,3 +64,5 @@ curl -sfL https://github.com/coolsnowwolf/packages/raw/master/lang/ruby/Makefile
 
 # 添加第三方软件包
 # git clone https://github.com/kenzok8/openwrt-packages.git package/openwrt-packages
+
+mv -f feeds/kiddin9/r81* tmp/
