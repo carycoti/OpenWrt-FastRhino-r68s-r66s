@@ -17,7 +17,7 @@
 # 下载并更新软件源
 shopt -s extglob
 # 添加软件源
-sed -i '$a src-git kiddin9 https://github.com/kiddin9/openwrt-packages.git;master' feeds.conf.default
+# sed -i '$a src-git kiddin9 https://github.com/kiddin9/openwrt-packages.git;master' feeds.conf.default
 
 # sed -i '1i src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
 # sed -i '2i src-git small https://github.com/kenzok8/small' feeds.conf.default
@@ -29,10 +29,11 @@ sed -i '/	refresh_config();/d' scripts/feeds
 
 ./scripts/feeds update -a
 
-git clone https://github.com/kenzok8/small 
-mv small/gn feeds/kiddin9/gn
-rm -rf small
-./scripts/feeds install -a -p kiddin9 -f
+# git clone https://github.com/kenzok8/small 
+# rm -rf feeds/kiddin9/gn
+# mv small/gn feeds/kiddin9/gn
+# rm -rf small
+# ./scripts/feeds install -a -p kiddin9 -f
 
 # 修改 Makefile
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
@@ -67,4 +68,4 @@ git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
 ./scripts/feeds install -a
 
-mv -f feeds/kiddin9/r81* tmp/
+# mv -f feeds/kiddin9/r81* tmp/
