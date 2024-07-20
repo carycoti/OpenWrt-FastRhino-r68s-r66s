@@ -159,7 +159,6 @@ jobs:
         echo
         echo "	      已选插件列表"
         cat Plug-in
-        echo "PLUG_IN=$(cat Plug-in | grep '1、luci-app-adguardhome')" >> $GITHUB_ENV
         # rm -rf {Plug-in,Plug-2}
 
         echo
@@ -223,6 +222,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
+        cd openwrt
         echo "release_tag=$(date +"%Y.%m.%d")-Lean" >> $GITHUB_OUTPUT
         echo "release_date=$(date +"%Y.%m.%d")" >> $GITHUB_OUTPUT
         touch release.txt
@@ -245,7 +245,7 @@ jobs:
 
         🎏 已选插件列表:
 
-        ${{ env.PLUG_IN }}" >> release.txt
+        $(cat Plug-in) " >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
     
     - name: 自动发布固件到 Releases
