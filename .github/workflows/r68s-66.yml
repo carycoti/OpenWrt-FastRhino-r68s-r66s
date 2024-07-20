@@ -159,7 +159,7 @@ jobs:
         echo
         echo "	      已选插件列表"
         cat Plug-in
-        echo "PLUG_IN=$(cat Plug-in | grep '1、luci-app-')" >> $GITHUB_ENV
+        echo "PLUG_IN=$(cat Plug-in | grep '1、luci-app-adguardhome')" >> $GITHUB_ENV
         # rm -rf {Plug-in,Plug-2}
 
         echo
