@@ -159,7 +159,7 @@ jobs:
         echo
         echo
         echo "	      已选插件列表"
-        echo "PLUG_IN=$(cat $Plug-in)">> $GITHUB_ENV
+        echo "PLUG_IN=$(cat Plug-in)" >> $GITHUB_ENV
         # rm -rf {Plug-in,Plug-2}
 
         echo
@@ -254,10 +254,12 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GIT_USER_TOKEN }}
       with:
-        name: ${{ steps.tag.outputs.release_tag }}-${{ env.DISTRIB_REVISION }}-FastRhino-R68S-linux-6.6-固件下载
+        name: ${{ steps.tag.outputs.release_tag }}-${{ env.DISTRIB_REVISION }}-Rockchip-armv8-linux-6.6-固件下载
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
-        files: ${{ env.FIRMWARE }}/*.img.gz
+        files: |
+          ${{ env.FIRMWARE }}/*.img.gz
+          ${{ env.FIRMWARE }}/*.tar.gz
 
     - name: 删除运行记录
       uses: Mattraks/delete-workflow-runs@main

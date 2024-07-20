@@ -18,6 +18,17 @@ shopt -s extglob
 # 添加软件源
 # sed -i '$a src-git kiddin9 https://github.com/kiddin9/openwrt-packages.git;master' feeds.conf.default
 
+#echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
+#echo 'src-git kenzo https://github.com/kenzok8/openwrt-packages' >>feeds.conf.default
+#echo 'src-git small https://github.com/kenzok8/small' >>feeds.conf.default
+
+#echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
+#echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall.git;main' >>feeds.conf.default
+#echo 'src-git helloworld https://github.com/Jason6111/helloworld' >>feeds.conf.default
+
+# 添加第三方软件包
+# git clone https://github.com/kenzok8/openwrt-packages.git package/openwrt-packages
+
 sed -i '1i src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
 sed -i '2i src-git small https://github.com/kenzok8/small' feeds.conf.default
 sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
@@ -25,6 +36,10 @@ sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.con
 sed -i "/telephony/d" feeds.conf.default
 sed -i "s?targets/%S/packages?targets/%S/\$(LINUX_VERSION)?" include/feeds.mk
 sed -i '/	refresh_config();/d' scripts/feeds
+
+./scripts/feeds update -a
+
+# ./scripts/feeds install -a -p kiddin9 -f
 
 # 修改 Makefile
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
@@ -34,9 +49,6 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 
 # 取消对 samba4 的菜单调整
 sed -i '/samba4/s/^/#/' package/lean/default-settings/files/zzz-default-settings
-
-./scripts/feeds update -a
-# ./scripts/feeds install -a -p kiddin9 -f
 
 # Themes
 rm -rf feeds/luci/themes/luci-theme-argon
@@ -53,17 +65,7 @@ rm -rf feeds/packages/lang/golang
 git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
 # 2024-07-17临时更改chinadns-ng
-sed -i "s/PKG_HASH:=d907398d08a2cadd8ab5b3c6c353de572bddb87db1363a458703dd7e966ddb13/PKG_HASH:=skip/" feeds/small/chinadns-ng/Makefile
-#sed -i "s/PKG_HASH:=e70dd8843c3688b58f66fff5320a93d5789b79114bcb36a94d5b554664439f04/PKG_HASH:=b99ef18516b705b3e73b15a9d5ddc99add359299b52639fe3c81dd761591d9d9/" feeds/kenzo/lua-maxminddb/Makefile
+# sed -i "s/PKG_HASH:=d907398d08a2cadd8ab5b3c6c353de572bddb87db1363a458703dd7e966ddb13/PKG_HASH:=skip/" feeds/small/chinadns-ng/Makefile
 
 ./scripts/feeds install -a
-#echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
-#echo 'src-git kenzo https://github.com/kenzok8/openwrt-packages' >>feeds.conf.default
-#echo 'src-git small https://github.com/kenzok8/small' >>feeds.conf.default
 
-#echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
-#echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall.git;main' >>feeds.conf.default
-#echo 'src-git helloworld https://github.com/Jason6111/helloworld' >>feeds.conf.default
-
-# 添加第三方软件包
-# git clone https://github.com/kenzok8/openwrt-packages.git package/openwrt-packages
