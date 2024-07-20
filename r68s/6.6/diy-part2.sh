@@ -25,6 +25,10 @@ sed -i 's/\(\([ \t]\+\)set network.$1.netmask=.*\)/\1\n \2set network.$1.gateway
 # 更改默认 Shell 为 bash
 sed -i 's/\/bin\/ash/\/bin\/bash/g' package/base-files/files/etc/passwd
 
+# opkg源
+sed -i "/mirrors.tencent.com/d" package/lean/default-settings/files/zzz-default-settings
+sed -i "/releases\/18.06.9/d" package/lean/default-settings/files/zzz-default-settings
+
 # Configure pppoe connection
 #uci set network.wan.proto=pppoe
 #uci set network.wan.username='yougotthisfromyour@isp.su'

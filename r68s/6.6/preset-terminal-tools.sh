@@ -4,7 +4,6 @@
 mkdir -p files/etc
 pushd files
 git clone --depth=1 https://github.com/jaivardhankapoor/bestbash root/.bash
-# rm -f etc/bash.bashrc
-# mkdir etc
+ln -s ./.bash/init ./.bashrc
 ln -s root/.bash/init etc/bash.bashrc
 popd
