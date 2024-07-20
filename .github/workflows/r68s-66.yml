@@ -158,6 +158,7 @@ jobs:
         echo
         echo
         echo "	      已选插件列表"
+        cat Plug-in
         echo "PLUG_IN=$(cat $Plug-in)" >> $GITHUB_ENV
         # rm -rf {Plug-in,Plug-2}
 
