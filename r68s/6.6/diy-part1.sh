@@ -53,7 +53,7 @@ sed -i 's/luci-theme-bootstrap/luci-theme-argon/' feeds/luci/collections/luci/Ma
 
 # 晶晨宝盒
 rm -rf package/luci-app-amlogic
-git clone https://github.com/ophub/luci-app-amlogic.git package
+git clone https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
 sed -i "s|firmware_repo.*|firmware_repo 'https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s'|g" package/luci-app-amlogic/root/etc/config/amlogic
 
 rm -rf feeds/luci/applications/luci-app-mosdns
