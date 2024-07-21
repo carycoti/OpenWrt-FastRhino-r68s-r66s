@@ -51,8 +51,9 @@ git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-a
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
-rm -f feeds/packages/lang/ruby/Makefile
-curl -sfL https://github.com/coolsnowwolf/packages/raw/master/lang/ruby/Makefile -o feeds/packages/lang/ruby/Makefile
+rm -f feeds/packages/lang/ruby
+git clone https://github.com/coolsnowwolf/packages tmp/lede-packages
+mv tmp/lede-packages/lang/ruby feeds/packages/lang/ruby
 
 ./scripts/feeds install -a
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
