@@ -50,7 +50,7 @@ git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-a
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
-rm -f feeds/packages/lang/ruby
+rm -rf feeds/packages/lang/ruby
 git clone https://github.com/coolsnowwolf/packages tmp/lede-packages
 mv tmp/lede-packages/lang/ruby feeds/packages/lang/ruby
 # mv tmp/lede-packages/lang/lua-maxminddb feeds/packages/lang/lua-maxminddb

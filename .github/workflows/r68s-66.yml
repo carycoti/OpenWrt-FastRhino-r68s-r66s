@@ -30,6 +30,7 @@ env:
   CONFIG_FILE: r68s/6.6/config/r68s.config
   DIY_P1_SH: r68s/6.6/diy-part1.sh
   DIY_P2_SH: r68s/6.6/diy-part2.sh
+  BASH_SH: r68s/6.6/preset-terminal-tools.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -122,8 +123,10 @@ jobs:
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x $DIY_P2_SH
+        chmod +x $BASH_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
+        $GITHUB_WORKSPACE/$BASH_SH
 
     # - name: SSH connection to Actions
     #   uses: P3TERX/ssh2actions@v1.0.0
