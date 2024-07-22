@@ -16,7 +16,7 @@
 # 添加软件源
 shopt -s extglob
 # 添加软件源
-# sed -i '$a src-git kiddin9 https://github.com/kiddin9/openwrt-packages.git;master' feeds.conf.default
+sed -i '$a src-git kiddin9 https://github.com/kiddin9/openwrt-packages.git;master' feeds.conf.default
 
 # sed -i '1i src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
 # sed -i '2i src-git small https://github.com/kenzok8/small' feeds.conf.default
@@ -36,7 +36,7 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 sed -i '/samba4/s/^/#/' package/lean/default-settings/files/zzz-default-settings
 
 ./scripts/feeds update -a
-# ./scripts/feeds install -a -p kiddin9 -f
+./scripts/feeds install -a -p kiddin9 -f
 
 # Themes
 rm -rf feeds/luci/themes/luci-theme-argon
@@ -50,8 +50,9 @@ git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-a
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
-# rm -f feeds/packages/lang/ruby/Makefile
-# curl -sfL https://github.com/coolsnowwolf/packages/raw/master/lang/ruby/Makefile -o feeds/packages/lang/ruby/Makefile
+rm -f feeds/packages/lang/ruby
+git clone https://github.com/coolsnowwolf/packages tmp/lede-packages
+mv tmp/lede-packages/lang/ruby feeds/packages/lang/ruby
 
 ./scripts/feeds install -a
 
