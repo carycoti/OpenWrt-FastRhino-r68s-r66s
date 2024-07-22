@@ -67,6 +67,7 @@ git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 rm -f feeds/packages/net/curl
 git clone https://github.com/coolsnowwolf/packages tmp/lede-packages
 mv tmp/lede-packages/net/curl feeds/packages/net/curl
+mv tmp/lede-packages/libs/glib2 feeds/packages/libs/glib2
 
 # 2024-07-17临时更改chinadns-ng
 # sed -i "s/PKG_HASH:=d907398d08a2cadd8ab5b3c6c353de572bddb87db1363a458703dd7e966ddb13/PKG_HASH:=skip/" feeds/small/chinadns-ng/Makefile
