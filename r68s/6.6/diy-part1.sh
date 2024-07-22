@@ -53,6 +53,14 @@ git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 rm -f feeds/packages/lang/ruby
 git clone https://github.com/coolsnowwolf/packages tmp/lede-packages
 mv tmp/lede-packages/lang/ruby feeds/packages/lang/ruby
+# mv tmp/lede-packages/lang/lua-maxminddb feeds/packages/lang/lua-maxminddb
+# mv tmp/lede-packages/net/redsocks2 feeds/packages/net/redsocks2
+# mv tmp/lede-packages/net/trojan-plus feeds/packages/net/trojan-plus
+
+# 2024-07-24临时更改chinadns-ng
+sed -i "s/PKG_MIRROR_HASH:=ed7c71afb74c8232cfda084545ad8c1f8fe6c5e8176da9a77729e1fa9044d863/PKG_MIRROR_HASH:=skip/" feeds/packages/net/trojan-plus/Makefile
+sed -i "s/PKG_MIRROR_HASH:=cb4cc4cd01c256ef563719d9ee40c265bcb0b8d3cbdcc83c940a434290d54c5d/PKG_MIRROR_HASH:=skip/" feeds/packages/net/redsocks2/Makefile
+sed -i "s/PKG_MIRROR_HASH:=e70dd8843c3688b58f66fff5320a93d5789b79114bcb36a94d5b554664439f04/PKG_MIRROR_HASH:=skip/" feeds/packages/lang/lua-maxminddb/Makefile
 
 ./scripts/feeds install -a
 
