@@ -33,9 +33,9 @@ sed -i 's/\(\([ \t]\+\)set network.$1.netmask=.*\)/\1\n \2set network.$1.gateway
 
 # 停用冲突的软件包: luci-app-smartdns换为需要操作的包名，启用=y， 停用=n
 # sed -i "s/\(luci-app-smartdns\)=y/\1=n/" .config
-sed -i 's/\(luci-app-bypass\)=y/\1=n/' .config
-sed -i 's/\(luci-app-passwall\)=y/\1=n/' .config
-sed -i 's/\(luci-app-ssr-plus\)=y/\1=n/' .config
+# sed -i 's/\(luci-app-bypass\)=y/\1=n/' .config
+# sed -i 's/\(luci-app-passwall\)=y/\1=n/' .config
+# sed -i 's/\(luci-app-ssr-plus\)=y/\1=n/' .config
 # sed -i 's/\(chinadns-ng\)=y/\1=n/' .config
 
 # 添加额外软件包
