@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: 编译OpenWrt固件r68s-6
+name: 编译lede固件
 
 on:
   repository_dispatch:
@@ -27,9 +27,10 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: r68s/6.1/config/r68s.config
-  DIY_P1_SH: r68s/6.1/diy-part1.sh
-  DIY_P2_SH: r68s/6.1/diy-part2.sh
+  CONFIG_FILE: lede/config/rockchip.config
+  DIY_P1_SH: lede/diy-part1.sh
+  DIY_P2_SH: lede/diy-part2.sh
+  FILE_SH: lede/preset-file.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -90,7 +91,7 @@ jobs:
       run: |
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get -qq update
-        sudo -E apt-get -qq install $(curl -fsSL https://github.com/popeyema/OpenWrt-R66s/raw/main/depends-ubuntu-latest)
+        sudo -E apt-get -qq install $(curl -fsSL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/depends-ubuntu-latest)
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
@@ -111,19 +112,15 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
-    - name: 更新源 #Update feeds
-      run: cd openwrt && ./scripts/feeds update -a
-
-    - name: 安装源 #Install feeds
-      run: cd openwrt && ./scripts/feeds install -a
-
     - name: patch2补丁和自定义设置
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x $DIY_P2_SH
+        chmod +x $FILE_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
+        $GITHUB_WORKSPACE/$FILE_SH
 
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
@@ -137,6 +134,7 @@ jobs:
         cd openwrt
         echo " 系统空间      类型   总数  已用  可用 使用率"
         df -hT $PWD
+
         
         echo
         echo "=========================================="
@@ -144,9 +142,9 @@ jobs:
 
         ZZZ="package/lean/default-settings/files/zzz-default-settings"
         echo "DISTRIB_REVISION=$(cat $ZZZ|grep DISTRIB_REVISION= | sed 's/^.\{24\}//g' | sed 's/.\{26\}$//')" >> $GITHUB_ENV
-        echo "KERNEL_PATCHVER=$(cat target/linux/rockchip/Makefile|grep KERNEL_PATCHVER | sed 's/^.\{17\}//g')" >> $GITHUB_ENV
+        echo "KERNEL_PATCHVER=$(cat include/kernel-6.6|grep LINUX_KERNEL_HASH | sed "s/.*\(6\.6\.\?[0-9]*\).*/\1/g")" >> $GITHUB_ENV
         echo "	    当前编译版本：$(cat $ZZZ|grep DISTRIB_REVISION= | sed 's/^.\{24\}//g' | sed 's/.\{26\}$//')"
-        echo "	    内核版本：$(cat target/linux/rockchip/Makefile|grep KERNEL_PATCHVER | sed 's/^.\{17\}//g')"
+        echo "	    内核版本：$(cat include/kernel-6.6|grep LINUX_KERNEL_HASH | sed "s/.*\(6\.6\.\?[0-9]*\).*/\1/g")"
 
         echo
         echo "=========================================="
@@ -160,12 +158,11 @@ jobs:
         sed -i 's/=y/\ /g' Plug-in
         awk '$0=NR$0' Plug-in > Plug-2
         awk '{print "	" $0}' Plug-2 > Plug-in
-
         echo
         echo
         echo "	      已选插件列表"
         cat Plug-in
-        rm -rf {Plug-in,Plug-2}
+        # rm -rf {Plug-in,Plug-2}
 
         echo
         echo "=========================================="
@@ -213,7 +210,10 @@ jobs:
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
         cd openwrt/bin/targets/*/*
-        rm -rf packages openwrt-armvirt-64-default.manifest openwrt-armvirt-64-Image sha256sums version.buildinfo feeds.buildinfo openwrt-armvirt-64-generic-kernel.bin openwrt-armvirt-64-generic.manifest
+        tar zcvf packages.tar.gz packages
+        # tar zcvf openwrt-armvirt-64-Image.tar.gz openwrt-armvirt-64-Image
+        # rm -rf packages openwrt-armvirt-64-default.manifest openwrt-armvirt-64-Image sha256sums version.buildinfo feeds.buildinfo openwrt-armvirt-64-generic-kernel.bin openwrt-armvirt-64-generic.manifest
+        rm -rf openwrt-armvirt-64-default.manifest sha256sums version.buildinfo feeds.buildinfo openwrt-armvirt-64-generic.manifest
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
 
@@ -221,7 +221,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        name: Lean_OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
     - name: 生成发布标签
@@ -242,11 +242,11 @@ jobs:
         
         🎉 编译版本：${{ env.DISTRIB_REVISION }}
         
-        🖥 管理地址：192.168.1.1 
+        🖥  管理地址：192.168.1.21
         
         🌴 名称：root
         
-        🛠 密码：password" >> release.txt
+        🛠  密码：password" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
     
     - name: 自动发布固件到 Releases
@@ -255,10 +255,13 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GIT_USER_TOKEN }}
       with:
-        name: ${{ steps.tag.outputs.release_date }} FastRhino-R68S-linux-固件下载
+        name: ${{ steps.tag.outputs.release_tag }}-${{ env.DISTRIB_REVISION }}-Rockchip-armv8-linux-6.6-固件下载
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
-        files: ${{ env.FIRMWARE }}/*.img.gz
+        files: |
+          ${{ env.FIRMWARE }}/*.img.gz
+          ${{ env.FIRMWARE }}/*.tar.gz
+          ${{ env.FIRMWARE }}/*.tar
 
     - name: 删除运行记录
       uses: Mattraks/delete-workflow-runs@main
