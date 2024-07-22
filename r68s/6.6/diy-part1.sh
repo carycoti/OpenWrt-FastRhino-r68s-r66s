@@ -19,9 +19,9 @@
 # 添加软件源
 # sed -i '$a src-git kiddin9 https://github.com/kiddin9/openwrt-packages.git;master' feeds.conf.default
 
-#sed -i '1i src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
-#sed -i '2i src-git small https://github.com/kenzok8/small' feeds.conf.default
-#sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
+sed -i '1i src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
+sed -i '2i src-git small https://github.com/kenzok8/small' feeds.conf.default
+sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
  
 sed -i "/telephony/d" feeds.conf.default
 sed -i "s?targets/%S/packages?targets/%S/\$(LINUX_VERSION)?" include/feeds.mk
@@ -56,22 +56,22 @@ git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/lea
 # git clone https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
 # sed -i "s|firmware_repo.*|firmware_repo 'https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s'|g" package/luci-app-amlogic/root/etc/config/amlogic
 
-#rm -rf feeds/luci/applications/luci-app-mosdns
-#rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,v2ray*,sing*,smartdns}
-#rm -rf feeds/packages/utils/v2dat
-#rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
+rm -rf feeds/luci/applications/luci-app-mosdns
+rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,v2ray*,sing*,smartdns}
+rm -rf feeds/packages/utils/v2dat
+rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
 
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
 # 替换编译出错的包
-rm -rf feeds/packages/net/curl
-rm -rf feeds/packages/libs/glib2
-rm -rf feeds/packages/lang/python/python3
-git clone https://github.com/coolsnowwolf/packages tmp/lede-packages
-mv tmp/lede-packages/net/curl feeds/packages/net/curl
-mv tmp/lede-packages/libs/glib2 feeds/packages/libs/glib2
-mv tmp/lede-packages/lang/python/python3 feeds/packages/lang/python/python3
+# rm -rf feeds/packages/net/curl
+# rm -rf feeds/packages/libs/glib2
+# rm -rf feeds/packages/lang/python/python3
+# git clone https://github.com/coolsnowwolf/packages tmp/lede-packages
+# mv tmp/lede-packages/net/curl feeds/packages/net/curl
+# mv tmp/lede-packages/libs/glib2 feeds/packages/libs/glib2
+# mv tmp/lede-packages/lang/python/python3 feeds/packages/lang/python/python3
 
 # 临时更改HASH为跳过检查
 # sed -i "s/PKG_HASH:=d907398d08a2cadd8ab5b3c6c353de572bddb87db1363a458703dd7e966ddb13/PKG_HASH:=skip/" feeds/small/chinadns-ng/Makefile
