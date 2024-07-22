@@ -64,12 +64,16 @@ git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/lea
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
-rm -f feeds/packages/net/curl
+# 替换编译出错的包
+rm -rf feeds/packages/net/curl
+rm -rf feeds/packages/libs/glib2
+rm -rf feeds/packages/lang/python/python3
 git clone https://github.com/coolsnowwolf/packages tmp/lede-packages
 mv tmp/lede-packages/net/curl feeds/packages/net/curl
 mv tmp/lede-packages/libs/glib2 feeds/packages/libs/glib2
+mv tmp/lede-packages/lang/python/python3 feeds/packages/lang/python/python3
 
-# 2024-07-17临时更改chinadns-ng
+# 临时更改HASH为跳过检查
 # sed -i "s/PKG_HASH:=d907398d08a2cadd8ab5b3c6c353de572bddb87db1363a458703dd7e966ddb13/PKG_HASH:=skip/" feeds/small/chinadns-ng/Makefile
 
 ./scripts/feeds install -a
