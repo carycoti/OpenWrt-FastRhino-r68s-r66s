@@ -56,6 +56,10 @@ git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 rm -rf feeds/packages/lang/ruby
 git clone https://github.com/coolsnowwolf/packages tmp/lede-packages
 mv tmp/lede-packages/lang/ruby feeds/packages/lang/ruby
+mv tmp/lede-packages/net/gowebdav feeds/packages/net/gowebdav
+mv tmp/lede-packages/utils/bandwidthd feeds/packages/utils/bandwidthd
+mv tmp/lede-packages/net/shadowsocks-libev feeds/packages/net/shadowsocks-libev
+mv tmp/lede-packages/libs/pcre2 feeds/packages/libs/pcre2
 # mv tmp/lede-packages/lang/lua-maxminddb feeds/packages/lang/lua-maxminddb
 # mv tmp/lede-packages/net/redsocks2 feeds/packages/net/redsocks2
 # mv tmp/lede-packages/net/trojan-plus feeds/packages/net/trojan-plus

@@ -19,6 +19,9 @@ sed -i 's/\(\([ \t]\+\)set network.$1.netmask=.*\)/\1\n \2set network.$1.gateway
 sed -i 's/\(\([ \t]\+\)set network.$1.netmask=.*\)/\1\n \2set network.$1.dns='192.168.1.1'/' package/feeds/kiddin9/base-files/files/bin/config_generate
 sed -i 's/\(\([ \t]\+\)set network.$1.netmask=.*\)/\1\n \2set network.$1.gateway='192.168.1.1'/' package/feeds/kiddin9/base-files/files/bin/config_generate
 
+# 更改默认 Shell 为 bash
+sed -i 's/\/bin\/ash/\/bin\/bash/g' package/base-files/files/etc/passwd
+
 # Configure pppoe connection
 #uci set network.wan.proto=pppoe
 #uci set network.wan.username='yougotthisfromyour@isp.su'
@@ -47,7 +50,7 @@ echo 'CONFIG_PACKAGE_docker-compose=y' >>.config
 echo 'CONFIG_PACKAGE_luci-app-dockerman=y' >>.config
 echo 'CONFIG_PACKAGE_luci-app-istorex=y' >>.config
 echo 'CONFIG_PACKAGE_luci-app-linkease=y' >>.config
-# echo 'CONFIG_PACKAGE_luci-app-gowebdav=y' >>.config
+echo 'CONFIG_PACKAGE_luci-app-gowebdav=y' >>.config
 
 # 科学上网插件
 
