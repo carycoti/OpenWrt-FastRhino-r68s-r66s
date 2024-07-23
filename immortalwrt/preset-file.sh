@@ -26,7 +26,7 @@ source ~/.bash/settings
 source ~/.bash/alias
 source ~/.bash/functions" > etc/bash.bashrc
 
-echo "root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::
+echo "root:\$1\$V4UetPzk\$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::
 daemon:*:0:0:99999:7:::
 ftp:*:0:0:99999:7:::
 network:*:0:0:99999:7:::
