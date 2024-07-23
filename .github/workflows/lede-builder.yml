@@ -228,7 +228,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=$(date +"%Y.%m.%d")-Lean" >> $GITHUB_OUTPUT
+        echo "release_tag=$(date +"%Y.%m.%d")-lean" >> $GITHUB_OUTPUT
         echo "release_date=$(date +"%Y.%m.%d")" >> $GITHUB_OUTPUT
         touch release.txt
         echo "
@@ -261,6 +261,7 @@ jobs:
         files: |
           ${{ env.FIRMWARE }}/*.img.gz
           ${{ env.FIRMWARE }}/*.tar.gz
+          ${{ env.FIRMWARE }}/*.tar
 
     - name: 删除运行记录
       uses: Mattraks/delete-workflow-runs@main
