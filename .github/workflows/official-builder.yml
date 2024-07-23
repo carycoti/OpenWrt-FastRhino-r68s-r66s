@@ -191,19 +191,19 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=$(date +"%Y.%m.%d")-Lean" >> $GITHUB_OUTPUT
+        echo "release_tag=$(date +"%Y.%m.%d")-official" >> $GITHUB_OUTPUT
         echo "release_date=$(date +"%Y.%m.%d")" >> $GITHUB_OUTPUT
         touch release.txt
         echo "
-        ★ 源码 : https://github.com/immortalwrt/immortalwrt
-        ★ 分支 : master
+        ★ 源码 : https://github.com/openwrt/openwrt
+        ★ 分支 : main
         ★ 感谢源码作者无私分享！
         
         ⏰ 编译时间：${{ env.FILE_TIME1 }}
         
-        🎈 内核版本：$(cat include/kernel-6.6|grep LINUX_KERNEL_HASH | sed "s/.*\(6\.6\.\?[0-9]*\).*/\1/g")
+        🎈 内核版本：${{ env.KERNEL_PATCHVER }}
         
-        🎉 编译版本：${{ env.DISTRIB_REVISION }}
+        🎉 编译版本：Snapshots
         
         🖥 管理地址：192.168.1.21 
         
@@ -218,10 +218,13 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GIT_USER_TOKEN }}
       with:
-        name: ${{ steps.tag.outputs.release_date }} FastRhino-R68S-linux-6.6-固件下载
+        name: ${{ steps.tag.outputs.release_date }}-Snapshots-Rockchip-armv8-linux-6.6-固件下载
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
-        files: ${{ env.FIRMWARE }}/*.img.gz
+        files: |
+          ${{ env.FIRMWARE }}/*.img.gz
+          ${{ env.FIRMWARE }}/*.tar.gz
+          ${{ env.FIRMWARE }}/*.tar
 
     - name: 删除运行记录
       uses: Mattraks/delete-workflow-runs@main

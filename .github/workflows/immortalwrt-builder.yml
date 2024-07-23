@@ -245,6 +245,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
+        cd openwrt
         echo "release_tag=$(date +"%Y.%m.%d")-immortalwrt" >> $GITHUB_OUTPUT
         echo "release_date=$(date +"%Y.%m.%d")" >> $GITHUB_OUTPUT
         touch release.txt
@@ -263,7 +264,10 @@ jobs:
         
         🌴 名称：root
         
-        🛠 密码：password" >> release.txt
+        🛠 密码：password
+
+        🎉 已选插件列表:
+        $(cat Plug-in)" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
     
     - name: 自动发布固件到 Releases
@@ -272,7 +276,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GIT_USER_TOKEN }}
       with:
-        name: ${{ steps.tag.outputs.release_tag }}-FastRhino-R68S-linux-6.6-固件下载
+        name: ${{ steps.tag.outputs.release_tag }}-Snapshots-Rockchip-armv8-linux-6.6-固件下载
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
         files: |
