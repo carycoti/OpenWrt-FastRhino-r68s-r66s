@@ -14,7 +14,7 @@ alias gb='git branch'
 alias gc='git commit -am'
 alias gd='git diff'
 alias go='git checkout'
-alias gl='git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit'
+alias gl=\"git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit\"
 alias gr='git remote'
 alias gn='git clone -o'
 alias gp='git pull'

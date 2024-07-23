@@ -264,10 +264,7 @@ jobs:
         
         🌴 名称：root
         
-        🛠 密码：password
-
-        🎉 已选插件列表:
-        $(cat Plug-in)" >> release.txt
+        🛠 密码：password" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
     
     - name: 自动发布固件到 Releases
