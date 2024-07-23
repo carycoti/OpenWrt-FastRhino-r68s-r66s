@@ -37,4 +37,9 @@ docker:x:0:0:99999:7:::
 logd:x:0:0:99999:7:::
 p910nd:x:0:0:99999:7:::
 ubus:x:0:0:99999:7:::" > etc/shadow
+
+echo "dest root /
+dest ram /tmp
+lists_dir ext /var/opkg-lists
+option overlay_root /overlay" > etc/opkg.conf
 popd
