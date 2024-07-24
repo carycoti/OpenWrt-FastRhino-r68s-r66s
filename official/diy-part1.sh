@@ -59,13 +59,14 @@ rm -rf feeds/packages/lang/golang
 git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
 # 替换编译出错的包
-rm -f feeds/packages/lang/ruby
+rm -rf feeds/packages/lang/ruby
 git clone https://github.com/coolsnowwolf/packages tmp/lede-packages
 mv tmp/lede-packages/lang/ruby feeds/packages/lang/ruby
 mv tmp/lede-packages/net/gowebdav feeds/packages/net/gowebdav
 mv tmp/lede-packages/utils/bandwidthd feeds/packages/utils/bandwidthd
 mv tmp/lede-packages/net/shadowsocks-libev feeds/packages/net/shadowsocks-libev
 mv tmp/lede-packages/libs/pcre2 feeds/packages/libs/pcre2
+rm -rf tmp/lede-packages
 
 # 添加第三方软件包
 # git clone https://github.com/kenzok8/openwrt-packages.git package/openwrt-packages
