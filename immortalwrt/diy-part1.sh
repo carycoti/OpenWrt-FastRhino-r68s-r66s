@@ -73,5 +73,5 @@ sed -i "s/PKG_MIRROR_HASH:=e70dd8843c3688b58f66fff5320a93d5789b79114bcb36a94d5b5
 # 添加第三方软件包
 # git clone https://github.com/kenzok8/openwrt-packages.git package/openwrt-packages
 
-./scripts/feeds install -a
+./scripts/feeds install -a -f
 # mv -f feeds/kiddin9/r81* tmp/
