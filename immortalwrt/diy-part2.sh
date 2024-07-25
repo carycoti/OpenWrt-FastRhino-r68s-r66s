@@ -22,6 +22,10 @@ sed -i 's/\(\([ \t]\+\)set network.$1.netmask=.*\)/\1\n \2set network.$1.gateway
 # 更改默认 Shell 为 bash
 sed -i 's/\/bin\/ash/\/bin\/bash/g' package/base-files/files/etc/passwd
 
+# 更改firewall设置：常规设置第3行和第5行的入站和转发设为接受
+sed -i "3s/REJECT/ACCEPT/" package/network/config/firewall/files/firewall.config
+sed -i "5s/REJECT/ACCEPT/" package/network/config/firewall/files/firewall.config
+
 # Configure pppoe connection
 #uci set network.wan.proto=pppoe
 #uci set network.wan.username='yougotthisfromyour@isp.su'

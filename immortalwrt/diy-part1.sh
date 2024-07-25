@@ -40,9 +40,9 @@ sed -i '/samba4/s/^/#/' package/lean/default-settings/files/zzz-default-settings
 # ./scripts/feeds install -a -p kiddin9 -f
 
 # Themes
-# rm -rf feeds/luci/themes/luci-theme-argon
-# #rm -rf feeds/luci/themes/luci-theme-bootstrap-mmdvm
-# git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+rm -rf feeds/luci/themes/luci-theme-argon
+#rm -rf feeds/luci/themes/luci-theme-bootstrap-mmdvm
+git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 
 # kenzok8
 rm -rf feeds/luci/applications/luci-app-mosdns
