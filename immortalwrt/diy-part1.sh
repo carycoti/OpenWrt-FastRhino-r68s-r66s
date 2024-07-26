@@ -79,9 +79,5 @@ sed -i "s/PKG_MIRROR_HASH:=e70dd8843c3688b58f66fff5320a93d5789b79114bcb36a94d5b5
 # 添加第三方软件包
 # git clone https://github.com/kenzok8/openwrt-packages.git package/openwrt-packages
 
-# 更改firewall设置：常规设置第3行和第5行的入站和转发设为接受
-sed -i "3s/REJECT/ACCEPT/" package/network/config/firewall/files/firewall.config
-sed -i "5s/REJECT/ACCEPT/" package/network/config/firewall/files/firewall.config
-
 ./scripts/feeds install -a
 # mv -f feeds/kiddin9/r81* tmp/
