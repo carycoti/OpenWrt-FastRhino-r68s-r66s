@@ -83,5 +83,5 @@ sed -i "s/PKG_MIRROR_HASH:=e70dd8843c3688b58f66fff5320a93d5789b79114bcb36a94d5b5
 sed -i "3s/REJECT/ACCEPT/" package/network/config/firewall/files/firewall.config
 sed -i "5s/REJECT/ACCEPT/" package/network/config/firewall/files/firewall.config
 
-./scripts/feeds install -a -f
+./scripts/feeds install -a
 # mv -f feeds/kiddin9/r81* tmp/
