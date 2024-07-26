@@ -19,9 +19,9 @@ shopt -s extglob
 # sed -i '$a src-git kiddin9 https://github.com/kiddin9/openwrt-packages.git;master' feeds.conf.default
 
 # 添加 kenzok8源
-sed -i '1i src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
-sed -i '2i src-git small https://github.com/kenzok8/small' feeds.conf.default
-sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
+# sed -i '1i src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
+# sed -i '2i src-git small https://github.com/kenzok8/small' feeds.conf.default
+# sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 
 # 删除 telephony feeds,并优化feeds命令
 sed -i "/telephony/d" feeds.conf.default
@@ -49,10 +49,10 @@ rm -rf feeds/luci/themes/luci-theme-bootstrap-mmdvm
 git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 
 # 为 kenzok8 源整理相关目录
-rm -rf feeds/luci/applications/luci-app-mosdns
-rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,v2ray*,sing*,smartdns}
-rm -rf feeds/packages/utils/v2dat
-rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
+# rm -rf feeds/luci/applications/luci-app-mosdns
+# rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,v2ray*,sing*,smartdns}
+# rm -rf feeds/packages/utils/v2dat
+# rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
 
 # 替换 golang
 rm -rf feeds/packages/lang/golang
@@ -62,11 +62,11 @@ git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 rm -rf feeds/packages/lang/ruby
 git clone https://github.com/coolsnowwolf/packages tmp/lede-packages
 mv tmp/lede-packages/lang/ruby feeds/packages/lang/ruby
-mv tmp/lede-packages/net/gowebdav feeds/packages/net/gowebdav
-mv tmp/lede-packages/utils/bandwidthd feeds/packages/utils/bandwidthd
-mv tmp/lede-packages/net/shadowsocks-libev feeds/packages/net/shadowsocks-libev
-mv tmp/lede-packages/libs/pcre2 feeds/packages/libs/pcre2
-rm -rf tmp/lede-packages
+# mv tmp/lede-packages/net/gowebdav feeds/packages/net/gowebdav
+# mv tmp/lede-packages/utils/bandwidthd feeds/packages/utils/bandwidthd
+# mv tmp/lede-packages/net/shadowsocks-libev feeds/packages/net/shadowsocks-libev
+# mv tmp/lede-packages/libs/pcre2 feeds/packages/libs/pcre2
+# rm -rf tmp/lede-packages
 
 # 2024-07-24临时更改chinadns-ng
 sed -i "s/PKG_MIRROR_HASH:=ed7c71afb74c8232cfda084545ad8c1f8fe6c5e8176da9a77729e1fa9044d863/PKG_MIRROR_HASH:=skip/" feeds/packages/net/trojan-plus/Makefile
