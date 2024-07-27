@@ -88,15 +88,17 @@ sed -i "s/PKG_MIRROR_HASH:=e70dd8843c3688b58f66fff5320a93d5789b79114bcb36a94d5b5
 # git clone https://github.com/kenzok8/openwrt-packages.git package/openwrt-packages
 
 # 防火
-echo "config defaults
-	option syn_flood	1
-	option input		ACCEPT
-	option output		ACCEPT
-	option forward		ACCEPT
-	option flow_offloading	1
-	option fullcone		1
-# Uncomment this line to disable ipv6 rules
-#	option disable_ipv6	1" >> package/network/config/firewall/files/firewall.config
+# echo "config defaults
+# 	option syn_flood	1
+# 	option input		ACCEPT
+# 	option output		ACCEPT
+# 	option forward		ACCEPT
+# 	option flow_offloading	1
+# 	option fullcone		1
+# # Uncomment this line to disable ipv6 rules
+# #	option disable_ipv6	1" >> package/network/config/firewall/files/firewall.config
+sed -i "3s/REJECT/ACCEPT/" package/network/config/firewall/files/firewall.config
+sed -i "5s/REJECT/ACCEPT/" package/network/config/firewall/files/firewall.config
 
 ./scripts/feeds install -a
 # mv -f feeds/kiddin9/r81* tmp/
