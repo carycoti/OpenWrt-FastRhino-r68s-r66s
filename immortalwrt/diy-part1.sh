@@ -22,6 +22,10 @@ shopt -s extglob
 sed -i '1i src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
 sed -i '2i src-git small https://github.com/kenzok8/small' feeds.conf.default
 sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
+
+# istore
+echo 'src-git nas https://github.com/linkease/nas-packages.git;master' >> feeds.conf.default
+echo 'src-git nas_luci https://github.com/linkease/nas-packages-luci.git;main' >> feeds.conf.default
  
 sed -i "/telephony/d" feeds.conf.default
 sed -i "s?targets/%S/packages?targets/%S/\$(LINUX_VERSION)?" include/feeds.mk
@@ -40,11 +44,12 @@ sed -i '/samba4/s/^/#/' package/lean/default-settings/files/zzz-default-settings
 # ./scripts/feeds install -a -p kiddin9 -f
 
 # Themes
-# rm -rf feeds/luci/themes/luci-theme-argon
-# #rm -rf feeds/luci/themes/luci-theme-bootstrap-mmdvm
-# git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+rm -rf feeds/luci/themes/luci-theme-argon
+#rm -rf feeds/luci/themes/luci-theme-bootstrap-mmdvm
+git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 
 # kenzok8
+rm -rf feeds/kenzo/luci-theme-argon
 rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,v2ray*,sing*,smartdns}
 rm -rf feeds/packages/utils/v2dat
@@ -78,6 +83,17 @@ sed -i "s/PKG_MIRROR_HASH:=e70dd8843c3688b58f66fff5320a93d5789b79114bcb36a94d5b5
 
 # 添加第三方软件包
 # git clone https://github.com/kenzok8/openwrt-packages.git package/openwrt-packages
+
+# 防火
+echo "config defaults
+	option syn_flood	1
+	option input		ACCEPT
+	option output		ACCEPT
+	option forward		ACCEPT
+	option flow_offloading	1
+	option fullcone		1
+# Uncomment this line to disable ipv6 rules
+#	option disable_ipv6	1" >> package/network/config/firewall/files/firewall.config
 
 ./scripts/feeds install -a
 # mv -f feeds/kiddin9/r81* tmp/
