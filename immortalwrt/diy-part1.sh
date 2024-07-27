@@ -43,6 +43,9 @@ sed -i '/samba4/s/^/#/' package/lean/default-settings/files/zzz-default-settings
 ./scripts/feeds update -a
 # ./scripts/feeds install -a -p kiddin9 -f
 
+# 替换中文,解决中文包无效的问题
+sed -i "/LUCI_LC_ALIAS.zh_Hans=zh-cn/a\LUCI_LC_ALIAS.zh-cn=zh_Hans" feeds/luci/luci.mk
+
 # Themes
 rm -rf feeds/luci/themes/luci-theme-argon
 #rm -rf feeds/luci/themes/luci-theme-bootstrap-mmdvm
