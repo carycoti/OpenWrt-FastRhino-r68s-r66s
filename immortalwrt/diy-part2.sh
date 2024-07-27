@@ -12,12 +12,13 @@
 
 #修改默认IP
 sed -i 's/192.168.1.1/192.168.1.21/g' package/base-files/files/bin/config_generate   # 定制默认IP
-sed -i 's/192.168.1.1/192.168.1.21/g' package/feeds/kiddin9/base-files/files/bin/config_generate
 # 默认网关和dns
 sed -i 's/\(\([ \t]\+\)set network.$1.netmask=.*\)/\1\n \2set network.$1.dns='192.168.1.1'/' package/base-files/files/bin/config_generate
 sed -i 's/\(\([ \t]\+\)set network.$1.netmask=.*\)/\1\n \2set network.$1.gateway='192.168.1.1'/' package/base-files/files/bin/config_generate
-sed -i 's/\(\([ \t]\+\)set network.$1.netmask=.*\)/\1\n \2set network.$1.dns='192.168.1.1'/' package/feeds/kiddin9/base-files/files/bin/config_generate
-sed -i 's/\(\([ \t]\+\)set network.$1.netmask=.*\)/\1\n \2set network.$1.gateway='192.168.1.1'/' package/feeds/kiddin9/base-files/files/bin/config_generate
+
+# 时区
+sed -i 's/UTC/CST-8/' package/base-files/files/bin/config_generate
+sed -i "/timezone=/a\set [email protected][-1].zonename='Asia/Shanghai'" package/base-files/files/bin/config_generate
 
 # 更改默认 Shell 为 bash
 # sed -i 's/\/bin\/ash/\/bin\/bash/g' package/base-files/files/etc/passwd
