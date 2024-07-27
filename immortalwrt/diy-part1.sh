@@ -50,6 +50,8 @@ git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-a
 
 # kenzok8
 rm -rf feeds/kenzo/luci-theme-argon
+rm -rf feeds/kenzo/luci-app-istorex
+rm -rf feeds/kenzo/quickstart
 rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,v2ray*,sing*,smartdns}
 rm -rf feeds/packages/utils/v2dat

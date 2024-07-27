@@ -34,7 +34,7 @@ source ~/dotfiles/bash/settings
 source ~/dotfiles/bash/alias
 source ~/dotfiles/bash/functions" > etc/bash.bashrc
 
-# mkdir -p root/.config
+mkdir -p root/.config/fish
 # cp -r root/dotfiles/fish root/.config
 ln -s root/dotfiles/fish root/.config/fish
 
