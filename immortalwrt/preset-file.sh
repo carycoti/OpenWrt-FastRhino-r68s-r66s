@@ -34,8 +34,9 @@ source ~/dotfiles/bash/settings
 source ~/dotfiles/bash/alias
 source ~/dotfiles/bash/functions" > etc/bash.bashrc
 
-rm -rf root/.config/fish
-cp -r root/dotfiles/fish root/.config/fish
+# mkdir -p root/.config
+# cp -r root/dotfiles/fish root/.config
+ln -s root/dotfiles/fish root/.config/fish
 
 echo "root:\$1\$V4UetPzk\$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::
 daemon:*:0:0:99999:7:::
