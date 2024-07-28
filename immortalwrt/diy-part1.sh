@@ -44,7 +44,8 @@ sed -i '/samba4/s/^/#/' package/lean/default-settings/files/zzz-default-settings
 # ./scripts/feeds install -a -p kiddin9 -f
 
 # 替换中文,解决中文包无效的问题
-# sed -i "s/option lang auto/option lang zh-cn/" feeds/luci/modules/luci-base/root/etc/config/luci
+sed -i "s/option lang auto/option lang zh_cn/" feeds/luci/modules/luci-base/root/etc/config/luci
+sed -i "/config internal languages/a\\\toption zh_cn 'chinese'\n\toption en 'English'" feeds/luci/modules/luci-base/root/etc/config/luci
 
 # Themes
 rm -rf feeds/luci/themes/luci-theme-argon

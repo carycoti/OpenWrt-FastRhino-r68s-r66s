@@ -127,6 +127,7 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
         $GITHUB_WORKSPACE/$FILE_SH
+        echo "KERNEL_PATCHVER=$(cat include/kernel-6.6|grep LINUX_KERNEL_HASH | sed "s/.*\(6\.6\.\?[0-9]*\).*/\1/g")" >> $GITHUB_ENV
 
     # - name: SSH connection to Actions
     #   uses: P3TERX/ssh2actions@v1.0.0
@@ -240,9 +241,14 @@ jobs:
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         name: immortalwrt_OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-        path: |
-          ${{ env.FIRMWARE }}
-          openwrt/bin/packages
+        path: ${{ env.FIRMWARE }}
+
+    - name: 上传软件包目录
+      uses: actions/upload-artifact@main
+      if: steps.organize.outputs.status == 'success' && !cancelled()
+      with:
+        name: immortalwrt_OpenWrt_packages${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        path: openwrt/bin/packages
 
     - name: 生成发布标签
       id: tag
