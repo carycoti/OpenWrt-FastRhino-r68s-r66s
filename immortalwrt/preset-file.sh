@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 配置bash
-mkdir -p files/etc
+mkdir -p files/etc/config
 pushd files
 # 配置 base 和 fish
 git clone https://github.com/carycoti/dotfiles.git root/dotfiles
