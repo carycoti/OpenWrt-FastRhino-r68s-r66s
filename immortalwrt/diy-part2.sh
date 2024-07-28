@@ -16,10 +16,9 @@ sed -i 's/192.168.1.1/192.168.1.21/g' package/base-files/files/bin/config_genera
 sed -i 's/\(\([ \t]\+\)set network.$1.netmask=.*\)/\1\n \2set network.$1.dns='192.168.1.1'/' package/base-files/files/bin/config_generate
 sed -i 's/\(\([ \t]\+\)set network.$1.netmask=.*\)/\1\n \2set network.$1.gateway='192.168.1.1'/' package/base-files/files/bin/config_generate
 
-# 时区
-sed -i 's/UTC/CST-8/' package/base-files/files/bin/config_generate
-sed -i "/timezone=/a\set [email protected][-1].zonename='Asia/Shanghai'" package/base-files/files/bin/config_generate
-cat package/base-files/files/bin/config_generate
+# 时区(没效果)
+# sed -i 's/UTC/CST-8/' package/base-files/files/bin/config_generate
+# sed -i "/timezone=/a\set [email protected][-1].zonename='Asia/Shanghai'" package/base-files/files/bin/config_generate
 
 # 更改默认 Shell 为 bash
 # sed -i 's/\/bin\/ash/\/bin\/bash/g' package/base-files/files/etc/passwd
@@ -49,7 +48,6 @@ sed -i 's/\(luci-app-bypass\)=y/\1=n/' .config
 sed -i 's/\(luci-app-ssr-plus\)=y/\1=n/' .config
 # sed -i 's/\(chinadns-ng\)=y/\1=n/' .config
 sed -i 's/\(zerotier\)=y/\1=m/' .config
-
 
 # 添加额外软件包
 echo 'CONFIG_PACKAGE_luci-app-diskman=y' >>.config

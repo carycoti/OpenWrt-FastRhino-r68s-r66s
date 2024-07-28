@@ -44,7 +44,7 @@ sed -i '/samba4/s/^/#/' package/lean/default-settings/files/zzz-default-settings
 # ./scripts/feeds install -a -p kiddin9 -f
 
 # 替换中文,解决中文包无效的问题
-sed -i "/LUCI_LC_ALIAS.zh_Hans=zh-cn/a\LUCI_LC_ALIAS.zh-cn=zh_Hans" feeds/luci/luci.mk
+sed -i "s/option lang auto/option lang zh_Hans/" feeds/luci/modules/luci-base/root/etc/config/luci
 
 # Themes
 rm -rf feeds/luci/themes/luci-theme-argon
@@ -102,7 +102,6 @@ sed -i "s/PKG_MIRROR_HASH:=e70dd8843c3688b58f66fff5320a93d5789b79114bcb36a94d5b5
 # #	option disable_ipv6	1" >> package/network/config/firewall/files/firewall.config
 sed -i "3s/REJECT/ACCEPT/" package/network/config/firewall/files/firewall.config
 sed -i "5s/REJECT/ACCEPT/" package/network/config/firewall/files/firewall.config
-cat package/network/config/firewall/files/firewall.config
 
 ./scripts/feeds install -a -p nas -f
 ./scripts/feeds install -a -p nas_luci -f
