@@ -12,6 +12,7 @@ source ~/dotfiles/bash/alias
 source ~/dotfiles/bash/functions" > etc/bash.bashrc
 
 mkdir -p root/.config
+# sed -i "s/whoami/uname -n/" root/dotfiles/fish/functions/fish_prompt_get_left_prompt.fish
 cp -r root/dotfiles/fish root/.config
 
 echo "root:\$1\$V4UetPzk\$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::

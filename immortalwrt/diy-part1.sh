@@ -44,7 +44,7 @@ sed -i '/samba4/s/^/#/' package/lean/default-settings/files/zzz-default-settings
 # ./scripts/feeds install -a -p kiddin9 -f
 
 # 替换中文,解决中文包无效的问题
-sed -i "s/option lang auto/option lang zh-cn/" feeds/luci/modules/luci-base/root/etc/config/luci
+# sed -i "s/option lang auto/option lang zh-cn/" feeds/luci/modules/luci-base/root/etc/config/luci
 
 # Themes
 rm -rf feeds/luci/themes/luci-theme-argon
@@ -99,7 +99,7 @@ echo "config defaults
 	option flow_offloading	1
 	option fullcone		1
 # Uncomment this line to disable ipv6 rules
-#	option disable_ipv6	1" >> package/network/config/firewall/files/firewall.config
+#	option disable_ipv6	1" >> package/network/config/firewall/files/firewall.user
 
 ./scripts/feeds install -a -p nas -f
 ./scripts/feeds install -a -p nas_luci -f
