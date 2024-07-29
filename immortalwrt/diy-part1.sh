@@ -38,14 +38,14 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
 
 # 取消对 samba4 的菜单调整
-sed -i '/samba4/s/^/#/' package/lean/default-settings/files/zzz-default-settings
+# sed -i '/samba4/s/^/#/' package/lean/default-settings/files/zzz-default-settings
 
 ./scripts/feeds update -a
 # ./scripts/feeds install -a -p kiddin9 -f
 
 # 替换中文,解决中文包无效的问题
-sed -i "s/option lang auto/option lang zh_cn/" feeds/luci/modules/luci-base/root/etc/config/luci
-sed -i "/config internal languages/a\\\toption zh_cn 'chinese'\n\toption en 'English'" feeds/luci/modules/luci-base/root/etc/config/luci
+# sed -i "s/option lang auto/option lang zh_cn/" feeds/luci/modules/luci-base/root/etc/config/luci
+# sed -i "/config internal languages/a\\\toption zh_cn 'chinese'\n\toption en 'English'" feeds/luci/modules/luci-base/root/etc/config/luci
 
 # Themes
 rm -rf feeds/luci/themes/luci-theme-argon
@@ -91,16 +91,6 @@ sed -i "s/PKG_MIRROR_HASH:=e70dd8843c3688b58f66fff5320a93d5789b79114bcb36a94d5b5
 # 添加第三方软件包
 # git clone https://github.com/kenzok8/openwrt-packages.git package/openwrt-packages
 
-# 防火
-echo "config defaults
-	option syn_flood	1
-	option input		ACCEPT
-	option output		ACCEPT
-	option forward		ACCEPT
-	option flow_offloading	1
-	option fullcone		1
-# Uncomment this line to disable ipv6 rules
-#	option disable_ipv6	1" >> package/network/config/firewall/files/firewall.user
 
 # 处理luci.mk 使正确处理LUCI_LANG.zh-cn 生成中文包
 sed -i "/LUCI_LANG.zh_Hant/a\LUCI_LANG.zh-cn=\$\(LUCI_LANG.zh_Hans\)\nLUCI_LANG.zh-tw=\$\(LUCI_LANG.zh_Hant\)\nLUCI_LANG.en=English" feeds/luci/luci.mk
