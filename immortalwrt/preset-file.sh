@@ -1,19 +1,19 @@
-#!/bin/sh
+#!/bin/bash
 
-uci set luci.main.lang=zh_cn
-uci commit luci
+# uci set luci.main.lang=zh_cn
+# uci commit luci
 
-uci -q batch <<-EOF
-	set system.@system[0].timezone='CST-8'
-	set system.@system[0].zonename='Asia/Shanghai'
+# uci -q batch <<-EOF
+# 	set system.@system[0].timezone='CST-8'
+# 	set system.@system[0].zonename='Asia/Shanghai'
 
-	delete system.ntp.server
-	add_list system.ntp.server='ntp1.aliyun.com'
-	add_list system.ntp.server='ntp.tencent.com'
-	add_list system.ntp.server='ntp.ntsc.ac.cn'
-	add_list system.ntp.server='time.ustc.edu.cn'
-EOF
-uci commit system
+# 	delete system.ntp.server
+# 	add_list system.ntp.server='ntp1.aliyun.com'
+# 	add_list system.ntp.server='ntp.tencent.com'
+# 	add_list system.ntp.server='ntp.ntsc.ac.cn'
+# 	add_list system.ntp.server='time.ustc.edu.cn'
+# EOF
+# uci commit system
 
 # files大法
 mkdir -p files/etc/config
@@ -40,6 +40,6 @@ curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/
 curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/firewall -o etc/config/firewall
 
 # # 时区
-# curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/system -o etc/config/system
+curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/system -o etc/config/system
 
 popd
