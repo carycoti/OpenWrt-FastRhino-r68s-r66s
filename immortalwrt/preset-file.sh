@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 uci set luci.main.lang=zh_cn
 uci commit luci
