@@ -93,10 +93,10 @@ sed -i "s/PKG_MIRROR_HASH:=e70dd8843c3688b58f66fff5320a93d5789b79114bcb36a94d5b5
 
 
 # 处理luci.mk 使正确处理LUCI_LANG.zh-cn 生成中文包
-sed -i "/LUCI_LANG.zh_Hant/a\LUCI_LANG.zh-cn=\$\(LUCI_LANG.zh_Hans\)\nLUCI_LANG.zh-tw=\$\(LUCI_LANG.zh_Hant\)\nLUCI_LANG.en=English" feeds/luci/luci.mk
-sed -i "/LUCI_LC_ALIAS.zh_Hant/a\LUCI_LC_ALIAS.zh-cn=zh-cn\nLUCI_LC_ALIAS.zh-tw=zh-tw" feeds/luci/luci.mk
-sed -i "s/    DEFAULT:=LUCI_LANG_.*/    ifeq \(\$\(2\),zh-cn\)\n        DEFAULT:=LUCI_LANG_zh_Hans||\(ALL\&\&m\)\n    else ifeq \(\$\(2\),zh-tw\)\n        DEFAULT:=LUCI_LANG_zh_Hant||\(ALL\&\&m\)\n    else\n        DEFAULT:=LUCI_LANG_\$\(2\)||\(ALL\&\&m\)\n    endif/"  feeds/luci/luci.mk
-sed -i "/LUCI_BUILD_PACKAGES +=/i\  define Package\/luci-i18n-\$\(LUCI_BASENAME\)-\$\(1\)\/postinst\n\t[ -n "\$\$\$\${IPKG_INSTROOT}" ] || {\n\t\t\(. \/etc\/uci-defaults\/luci-i18n-\$\(LUCI_BASENAME\)-\$\(1\)\) \&\& rm -f \/etc\/uci-defaults\/luci-i18n-\$\(LUCI_BASENAME\)-\$\(1\)\n\t\texit 0\n\t}\n  endef" feeds/luci/luci.mk
+# sed -i "/LUCI_LANG.zh_Hant/a\LUCI_LANG.zh-cn=\$\(LUCI_LANG.zh_Hans\)\nLUCI_LANG.zh-tw=\$\(LUCI_LANG.zh_Hant\)\nLUCI_LANG.en=English" feeds/luci/luci.mk
+# sed -i "/LUCI_LC_ALIAS.zh_Hant/a\LUCI_LC_ALIAS.zh-cn=zh-cn\nLUCI_LC_ALIAS.zh-tw=zh-tw" feeds/luci/luci.mk
+# sed -i "s/    DEFAULT:=LUCI_LANG_.*/    ifeq \(\$\(2\),zh-cn\)\n        DEFAULT:=LUCI_LANG_zh_Hans||\(ALL\&\&m\)\n    else ifeq \(\$\(2\),zh-tw\)\n        DEFAULT:=LUCI_LANG_zh_Hant||\(ALL\&\&m\)\n    else\n        DEFAULT:=LUCI_LANG_\$\(2\)||\(ALL\&\&m\)\n    endif/"  feeds/luci/luci.mk
+# sed -i "/LUCI_BUILD_PACKAGES +=/i\  define Package\/luci-i18n-\$\(LUCI_BASENAME\)-\$\(1\)\/postinst\n\t[ -n "\$\$\$\${IPKG_INSTROOT}" ] || {\n\t\t\(. \/etc\/uci-defaults\/luci-i18n-\$\(LUCI_BASENAME\)-\$\(1\)\) \&\& rm -f \/etc\/uci-defaults\/luci-i18n-\$\(LUCI_BASENAME\)-\$\(1\)\n\t\texit 0\n\t}\n  endef" feeds/luci/luci.mk
 
 ./scripts/feeds install -a -p nas -f
 ./scripts/feeds install -a -p nas_luci -f

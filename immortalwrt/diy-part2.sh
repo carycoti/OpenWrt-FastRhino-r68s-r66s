@@ -17,8 +17,8 @@ sed -i 's/\(\([ \t]\+\)set network.$1.netmask=.*\)/\1\n \2set network.$1.dns='19
 sed -i 's/\(\([ \t]\+\)set network.$1.netmask=.*\)/\1\n \2set network.$1.gateway='192.168.1.1'/' package/base-files/files/bin/config_generate
 
 # 时区(没效果)
-sed -i 's/UTC/CST-8/' package/base-files/files/bin/config_generate
-sed -i "/timezone=/a\set [email protected][-1].zonename='Asia/Shanghai'" package/base-files/files/bin/config_generate
+# sed -i 's/UTC/CST-8/' package/base-files/files/bin/config_generate
+# sed -i "/timezone=/a\set [email protected][-1].zonename='Asia/Shanghai'" package/base-files/files/bin/config_generate
 
 # 更改默认 Shell 为 bash
 # sed -i 's/\/bin\/ash/\/bin\/bash/g' package/base-files/files/etc/passwd
