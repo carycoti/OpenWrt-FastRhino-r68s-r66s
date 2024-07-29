@@ -39,7 +39,10 @@ curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/
 # 防火墙
 curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/firewall -o etc/config/firewall
 
-# # 时区
+# 时区
 curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/system -o etc/config/system
+
+# docker
+curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/dockerd -o etc/config/dockerd
 
 popd
