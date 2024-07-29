@@ -1,0 +1,21 @@
+
+config system
+     option hostname 'ImmortalWrt'
+     option timezone 'CST-8'
+     option ttylogin '0'
+     option log_size '64'
+     option urandom_seed '0'
+     option compat_version '1.1'
+     option zonename 'Asia/Shanghai'
+     option log_proto 'udp'
+     option conloglevel '8'
+     option cronloglevel '5'
+
+config timeserver 'ntp'
+     list server 'time1.apple.com'
+     list server 'time1.google.com'
+     list server 'time.cloudflare.com'
+     list server 'pool.ntp.org'
+
+config imm_init
+     option ipv6 '2'
