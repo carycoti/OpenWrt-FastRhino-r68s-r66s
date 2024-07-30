@@ -45,4 +45,7 @@ curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/
 # docker
 curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/dockerd -o etc/config/dockerd
 
+# 中文
+curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/luci -o etc/config/luci
+
 popd
