@@ -48,6 +48,7 @@ sed -i 's/\(luci-app-passwall\)=y/\1=n/' .config
 sed -i 's/\(luci-app-ssr-plus\)=y/\1=n/' .config
 # sed -i 's/\(chinadns-ng\)=y/\1=n/' .config
 sed -i 's/\(zerotier\)=y/\1=m/' .config
+sed -i 's/\(zh-cn\)=y/\1=n/' .config
 
 # 添加额外软件包
 echo 'CONFIG_PACKAGE_luci-app-diskman=y' >>.config
