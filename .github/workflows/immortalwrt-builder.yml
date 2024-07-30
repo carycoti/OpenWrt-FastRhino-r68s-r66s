@@ -129,12 +129,12 @@ jobs:
         $GITHUB_WORKSPACE/$FILE_SH
         echo "KERNEL_PATCHVER=$(cat include/kernel-6.6|grep LINUX_KERNEL_HASH | sed "s/.*\(6\.6\.\?[0-9]*\).*/\1/g")" >> $GITHUB_ENV
 
-    # - name: SSH connection to Actions
-    #   uses: P3TERX/ssh2actions@v1.0.0
-    #   if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
-    #   env:
-    #     TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-    #     TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+    - name: SSH connection to Actions
+      uses: P3TERX/ssh2actions@v1.0.0
+      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+      env:
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
     # - name: 输出编译信息
     #   run: |
@@ -216,13 +216,6 @@ jobs:
         du -h --max-depth=1 openwrt/ --exclude=build_dir --exclude=bin
         du -h --max-depth=1 openwrt/build_dir
         du -h --max-depth=1 openwrt/bin
-
-    - name: SSH connection to Actions
-      uses: P3TERX/ssh2actions@v1.0.0
-      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
-      env:
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
     - name: 整理固件文件
       id: organize
