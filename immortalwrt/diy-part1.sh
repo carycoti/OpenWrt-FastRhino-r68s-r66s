@@ -24,8 +24,8 @@ sed -i '2i src-git small https://github.com/kenzok8/small' feeds.conf.default
 sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 
 # istore
-echo 'src-git nas https://github.com/linkease/nas-packages.git;master' >> feeds.conf.default
-echo 'src-git nas_luci https://github.com/linkease/nas-packages-luci.git;main' >> feeds.conf.default
+# echo 'src-git nas https://github.com/linkease/nas-packages.git;master' >> feeds.conf.default
+# echo 'src-git nas_luci https://github.com/linkease/nas-packages-luci.git;main' >> feeds.conf.default
  
 sed -i "/telephony/d" feeds.conf.default
 sed -i "s?targets/%S/packages?targets/%S/\$(LINUX_VERSION)?" include/feeds.mk
@@ -54,9 +54,9 @@ git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-a
 
 # kenzok8
 rm -rf feeds/kenzo/luci-theme-argon
-rm -rf feeds/kenzo/luci-app-istorex
-rm -rf feeds/kenzo/luci-app-quickstart
-rm -rf feeds/kenzo/quickstart
+# rm -rf feeds/kenzo/luci-app-istorex
+# rm -rf feeds/kenzo/luci-app-quickstart
+# rm -rf feeds/kenzo/quickstart
 rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,v2ray*,sing*,smartdns}
 rm -rf feeds/packages/utils/v2dat
@@ -77,7 +77,7 @@ rm -rf tmp/lede-packages
 # mv tmp/lede-packages/net/redsocks2 feeds/packages/net/redsocks2
 # mv tmp/lede-packages/net/trojan-plus feeds/packages/net/trojan-plus
 
-# 2024-07-24临时更改chinadns-ng
+# 2024-07-24临时更改 HASH
 sed -i "s/PKG_MIRROR_HASH:=ed7c71afb74c8232cfda084545ad8c1f8fe6c5e8176da9a77729e1fa9044d863/PKG_MIRROR_HASH:=skip/" feeds/packages/net/trojan-plus/Makefile
 
 sed -i "s/PKG_MIRROR_HASH:=0981bf49cb8a6e7f81912808987727bf6a2454ad0a3cf744f1a64bfc1969b088/PKG_MIRROR_HASH:=skip/" feeds/packages/net/redsocks2/Makefile
@@ -98,7 +98,7 @@ sed -i "s/PKG_MIRROR_HASH:=e70dd8843c3688b58f66fff5320a93d5789b79114bcb36a94d5b5
 # sed -i "s/    DEFAULT:=LUCI_LANG_.*/    ifeq \(\$\(2\),zh-cn\)\n        DEFAULT:=LUCI_LANG_zh_Hans||\(ALL\&\&m\)\n    else ifeq \(\$\(2\),zh-tw\)\n        DEFAULT:=LUCI_LANG_zh_Hant||\(ALL\&\&m\)\n    else\n        DEFAULT:=LUCI_LANG_\$\(2\)||\(ALL\&\&m\)\n    endif/"  feeds/luci/luci.mk
 # sed -i "/LUCI_BUILD_PACKAGES +=/i\  define Package\/luci-i18n-\$\(LUCI_BASENAME\)-\$\(1\)\/postinst\n\t[ -n "\$\$\$\${IPKG_INSTROOT}" ] || {\n\t\t\(. \/etc\/uci-defaults\/luci-i18n-\$\(LUCI_BASENAME\)-\$\(1\)\) \&\& rm -f \/etc\/uci-defaults\/luci-i18n-\$\(LUCI_BASENAME\)-\$\(1\)\n\t\texit 0\n\t}\n  endef" feeds/luci/luci.mk
 
-./scripts/feeds install -a -p nas -f
-./scripts/feeds install -a -p nas_luci -f
+# ./scripts/feeds install -a -p nas -f
+# ./scripts/feeds install -a -p nas_luci -f
 ./scripts/feeds install -a
 # mv -f feeds/kiddin9/r81* tmp/

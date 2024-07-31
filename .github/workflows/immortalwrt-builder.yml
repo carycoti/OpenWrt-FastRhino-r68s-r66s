@@ -282,7 +282,6 @@ jobs:
           ${{ env.FIRMWARE }}/*.tar.gz
           ${{ env.FIRMWARE }}/*.tar
           ${{ env.FIRMWARE }}/*.tar.zst
-          openwrt/bin/packages
 
     - name: 删除运行记录
       uses: Mattraks/delete-workflow-runs@main
