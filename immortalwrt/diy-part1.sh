@@ -61,9 +61,9 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
-# rm -rf feeds/packages/lang/ruby
-# git clone https://github.com/coolsnowwolf/packages tmp/lede-packages
-# mv tmp/lede-packages/lang/ruby feeds/packages/lang/ruby
+rm -rf feeds/packages/lang/ruby
+git clone https://github.com/coolsnowwolf/packages tmp/lede-packages
+mv tmp/lede-packages/lang/ruby feeds/packages/lang/ruby
 # mv tmp/lede-packages/net/gowebdav feeds/packages/net/gowebdav
 # mv tmp/lede-packages/utils/bandwidthd feeds/packages/utils/bandwidthd
 # mv tmp/lede-packages/net/shadowsocks-libev feeds/packages/net/shadowsocks-libev
