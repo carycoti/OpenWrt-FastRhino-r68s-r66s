@@ -51,11 +51,8 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 # #rm -rf feeds/luci/themes/luci-theme-bootstrap-mmdvm
 # git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 
-# kenzok8
+# kenzok8 相关的冲突包
 # rm -rf feeds/kenzo/luci-theme-argon
-# # rm -rf feeds/kenzo/luci-app-istorex
-# # rm -rf feeds/kenzo/luci-app-quickstart
-# # rm -rf feeds/kenzo/quickstart
 # rm -rf feeds/luci/applications/luci-app-mosdns
 # rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,v2ray*,sing*,smartdns}
 # rm -rf feeds/packages/utils/v2dat
@@ -84,14 +81,16 @@ sed -i "s/PKG_MIRROR_HASH:=e70dd8843c3688b58f66fff5320a93d5789b79114bcb36a94d5b5
 # 添加第三方软件包
 # git clone https://github.com/kenzok8/openwrt-packages.git package/openwrt-packages
 
-
 # 处理luci.mk 使正确处理LUCI_LANG.zh-cn 生成中文包
 # sed -i "/LUCI_LANG.zh_Hant/a\LUCI_LANG.zh-cn=\$\(LUCI_LANG.zh_Hans\)\nLUCI_LANG.zh-tw=\$\(LUCI_LANG.zh_Hant\)\nLUCI_LANG.en=English" feeds/luci/luci.mk
 # sed -i "/LUCI_LC_ALIAS.zh_Hant/a\LUCI_LC_ALIAS.zh-cn=zh-cn\nLUCI_LC_ALIAS.zh-tw=zh-tw" feeds/luci/luci.mk
 # sed -i "s/    DEFAULT:=LUCI_LANG_.*/    ifeq \(\$\(2\),zh-cn\)\n        DEFAULT:=LUCI_LANG_zh_Hans||\(ALL\&\&m\)\n    else ifeq \(\$\(2\),zh-tw\)\n        DEFAULT:=LUCI_LANG_zh_Hant||\(ALL\&\&m\)\n    else\n        DEFAULT:=LUCI_LANG_\$\(2\)||\(ALL\&\&m\)\n    endif/"  feeds/luci/luci.mk
 # sed -i "/LUCI_BUILD_PACKAGES +=/i\  define Package\/luci-i18n-\$\(LUCI_BASENAME\)-\$\(1\)\/postinst\n\t[ -n "\$\$\$\${IPKG_INSTROOT}" ] || {\n\t\t\(. \/etc\/uci-defaults\/luci-i18n-\$\(LUCI_BASENAME\)-\$\(1\)\) \&\& rm -f \/etc\/uci-defaults\/luci-i18n-\$\(LUCI_BASENAME\)-\$\(1\)\n\t\texit 0\n\t}\n  endef" feeds/luci/luci.mk
 
-rm -rf feeds/kiddin9/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
+# kiddin9 相关的冲突包
+rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,v2ray*,smartdns}
+rm -rf feeds/packages/utils/v2dat
+rm -rf feeds/kiddin9/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb,quectel_SRPD_PCIE,adguardhome}
 
 ./scripts/feeds install -a -p kiddin9 -f
 ./scripts/feeds install -a
