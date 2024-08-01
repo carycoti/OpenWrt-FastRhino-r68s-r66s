@@ -96,3 +96,4 @@ mv -f feeds/kiddin9/r81* tmp/
 ./scripts/feeds install -a -p kiddin9 -f
 ./scripts/feeds install -a
 
+# ucl, vsftpd*, quectel_SRPD_PCIE, shortcut-fe, fibocom_QMI_WWAN
