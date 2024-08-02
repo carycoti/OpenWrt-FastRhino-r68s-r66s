@@ -1,28 +1,51 @@
 #!/bin/bash
 
-# 配置bash
-mkdir -p files/etc
-pushd files
-git clone --depth=1 https://github.com/jaivardhankapoor/bestbash root/.bash
-sed -i "s/alias grep='grep --color=tty -d skip'/alias grep='grep --color=tty'/" root/.bash/alias 
-# ln -s root/.bash/init root/.bashrc
-# ln -s root/.bash/init etc/bash.bashrc
-echo "# GIT {{{
-alias gs='git status -sb'
-alias ga='git add .'
-alias gb='git branch'
-alias gc='git commit -am'
-alias gd='git diff'
-alias go='git checkout'
-alias gl=\"git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit\"
-alias gr='git remote'
-alias gn='git clone -o'
-alias gp='git pull'
-alias gps='git push'
-#}}}" >> root/.bash/alias 
+# uci set luci.main.lang=zh_cn
+# uci commit luci
 
-echo "source ~/.bash/colors
-source ~/.bash/settings
-source ~/.bash/alias
-source ~/.bash/functions" > etc/bash.bashrc
+# uci -q batch <<-EOF
+# 	set system.@system[0].timezone='CST-8'
+# 	set system.@system[0].zonename='Asia/Shanghai'
+
+# 	delete system.ntp.server
+# 	add_list system.ntp.server='ntp1.aliyun.com'
+# 	add_list system.ntp.server='ntp.tencent.com'
+# 	add_list system.ntp.server='ntp.ntsc.ac.cn'
+# 	add_list system.ntp.server='time.ustc.edu.cn'
+# EOF
+# uci commit system
+
+# files大法
+mkdir -p files/etc/config
+
+# 进入工作目录 files
+pushd files
+# 配置 base 和 fish
+git clone https://github.com/carycoti/dotfiles.git root/dotfiles
+curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/bash.bashrc -o etc/bash.bashrc
+# fish
+mkdir -p root/.config
+cp -r root/dotfiles/fish root/.config
+
+# 用户名和密码
+curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/shadow -o etc/shadow
+
+# 配置 opkg
+curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/opkg.conf -o etc/opkg.conf
+# 替换opkg默认源，要用webdav自建 core 库
+mkdir -p etc/opkg
+curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/distfeeds.conf -o etc/opkg/distfeeds.conf
+
+# 防火墙
+curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/firewall -o etc/config/firewall
+
+# 时区
+curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/system -o etc/config/system
+
+# docker
+curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/dockerd -o etc/config/dockerd
+
+# 中文
+# curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/luci -o etc/config/luci
+
 popd
