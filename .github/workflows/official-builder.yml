@@ -234,7 +234,7 @@ jobs:
         name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: |
           ${{ env.FIRMWARE }}
-    
+
     - name: 上传软件包目录
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
