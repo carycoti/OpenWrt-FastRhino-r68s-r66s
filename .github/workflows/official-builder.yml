@@ -239,7 +239,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: immortalwrt_OpenWrt_packages${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        name: OpenWrt_packages${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin/packages
 
     - name: 生成发布标签
