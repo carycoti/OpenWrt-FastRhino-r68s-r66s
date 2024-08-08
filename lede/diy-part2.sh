@@ -62,6 +62,8 @@ echo 'CONFIG_PACKAGE_luci-app-linkease=y' >>.config
 echo 'CONFIG_PACKAGE_luci-app-gowebdav=y' >>.config
 echo 'CONFIG_PACKAGE_kmod-fs-virtiofs=n' >>.config
 echo 'CONFIG_PACKAGE_kmod-usb-audio=n' >>.config
+echo 'CONFIG_PACKAGE_quectel_SRPD_PCIE=n' >>.config
+
 
 # 科学上网插件
 
