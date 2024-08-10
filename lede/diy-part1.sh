@@ -59,11 +59,11 @@ git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/lea
 rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,v2ray*,sing*,smartdns,jool}
 rm -rf feeds/packages/utils/{v2dat,gl-mifi-mcu}
-rm -rf feeds/packages/libs/{dmx_usb_module,libpfring}
-rm -rf package/lean/r8101
-rm -rf package/wwan/driver/quectel_SRPD_PCIE
-rm -rf package/kernel/{ath10k-ct,ubnt-ledbar,mac80211}
-rm -rf feeds/routing/batman-adv
+# rm -rf feeds/packages/libs/{dmx_usb_module,libpfring}
+# rm -rf package/lean/r8101
+# rm -rf package/wwan/driver/quectel_SRPD_PCIE
+# rm -rf package/kernel/{ath10k-ct,ubnt-ledbar,mac80211}
+# rm -rf feeds/routing/batman-adv
 rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
 
 rm -rf feeds/packages/lang/golang

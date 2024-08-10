@@ -35,12 +35,14 @@ curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/
 # 替换opkg默认源，要用webdav自建 core 库
 mkdir -p etc/opkg
 curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/distfeeds.conf -o etc/opkg/distfeeds.conf
+sed -i "s/imm/official/" etc/opkg/distfeeds.conf
 
 # 防火墙
 curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/firewall -o etc/config/firewall
 
 # 时区
 curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/system -o etc/config/system
+sed -i "s/ImmortalWrt/Haleima/" etc/config/system
 
 # docker
 curl -sL https://github.com/carycoti/OpenWrt-FastRhino-r68s-r66s/raw/main/files/dockerd -o etc/config/dockerd
