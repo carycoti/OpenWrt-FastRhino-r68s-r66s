@@ -200,8 +200,8 @@ jobs:
       run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
-        # IGNORE_ERRORS=1 make -j$(nproc) || make -j1 || make -j1 V=s
-        make -j$(nproc) || make -j1 || make -j1 V=s
+        IGNORE_ERRORS=1 make -j$(nproc) || make -j1 || make -j1 V=s
+        # make -j$(nproc) || make -j1 || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
         grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' | sed -n "1p" > DEVICE_NAME
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
