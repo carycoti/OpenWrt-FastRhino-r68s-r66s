@@ -13,7 +13,6 @@
 # 执行命令来切换内核
 #sed -i 's/PATCHVER:=6.1/PATCHVER:=6.6/g' target/linux/rockchip/Makefile
 
-
 # 下载并更新软件源
 #shopt -s extglob
 # 添加软件源
@@ -22,7 +21,7 @@ sed -i '$a src-git kiddin9 https://github.com/kiddin9/openwrt-packages.git;maste
 # sed -i '1i src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
 # sed -i '2i src-git small https://github.com/kenzok8/small' feeds.conf.default
 # sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
- 
+
 sed -i "/telephony/d" feeds.conf.default
 sed -i "s?targets/%S/packages?targets/%S/\$(LINUX_VERSION)?" include/feeds.mk
 sed -i '/	refresh_config();/d' scripts/feeds
@@ -35,12 +34,11 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 
 ./scripts/feeds update -a
 
-# git clone https://github.com/kenzok8/small 
+# git clone https://github.com/kenzok8/small
 # rm -rf feeds/kiddin9/gn
 # mv small/gn feeds/kiddin9/gn
 # rm -rf small
 # ./scripts/feeds install -a -p kiddin9 -f
-
 
 # 取消对 samba4 的菜单调整
 sed -i '/samba4/s/^/#/' package/lean/default-settings/files/zzz-default-settings
@@ -90,8 +88,8 @@ git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 # kiddin9 相关的冲突包
 rm -rf feeds/packages/net/{alist,mosdns,xray*,v2ray*,v2ray*,smartdns}
 rm -rf feeds/packages/utils/v2dat
-rm -rf feeds/kiddin9/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,upx,miniupnpd-iptables,wireless-regdb,quectel_SRPD_PCIE,adguardhome,shortcut-fe,fibocom_QMI_WWAN,quectel_QMI_WWAN,rtl8189es}
-mv -f feeds/kiddin9/r81* tmp/
+rm -rf feeds/kiddin9/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,upx}
+#mv -f feeds/kiddin9/r81* tmp/
 # 替换 quickstart.lua
 curl -sL https://raw.githubusercontent.com/kenzok8/openwrt-packages/master/luci-app-quickstart/luasrc/controller/quickstart.lua -o feeds/kiddin9/luci-app-quickstart/luasrc/controller/quickstart.lua
 
